@@ -27,11 +27,17 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     // Apply theme, text size, and color mode classes to the root <html> element
-    const root = document.documentElement;
-    root.className = ''; // Clear all classes first
-    root.classList.add(theme); // 'light', 'dark', or 'high-contrast'
-    root.classList.add(`font-size-${textSize}`); // 'font-size-small', etc.
-    root.classList.add(`mode-${colorMode}`); // 'mode-a', etc.
+    const root = document.documentElement; // The <html> tag
+
+    // Clean up old classes before adding new ones to prevent conflicts
+    root.classList.remove('light', 'dark', 'high-contrast', 'color-blend');
+    root.classList.remove('font-size-small', 'font-size-medium', 'font-size-large');
+    root.classList.remove('mode-a', 'mode-b', 'mode-c', 'mode-d');
+
+    // Add the current, correct classes
+    root.classList.add(theme);
+    root.classList.add(`font-size-${textSize}`);
+    root.classList.add(`mode-${colorMode}`);
     if (isColorBlend) {
       root.classList.add('color-blend');
     }

@@ -192,6 +192,12 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* --- Color Blend Effect --- */
+html.color-blend body {
+    /* This creates an effect where text and elements interact with the background */
+    mix-blend-mode: difference;
+}
+
 /* --- Responsive Font Size Classes (Applied to <html> tag) --- */
 html.font-size-small {
   font-size: 14px; /* Base font size for small setting */
