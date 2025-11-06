@@ -13,10 +13,29 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
     } = useTheme();
 
     const [activeTab, setActiveTab] = useState(initialTab || 'settings');
+    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+    const [submissionStatus, setSubmissionStatus] = useState('idle'); // 'idle', 'submitting', 'success'
 
     useEffect(() => {
         setActiveTab(initialTab);
-    }, [initialTab]);
+        // Reset form when tab changes
+        setSubmissionStatus('idle');
+    }, [initialTab, isOpen]);
+
+    const handleFormChange = (e) => {
+        const { id, value } = e.target;
+        setFormState(prevState => ({ ...prevState, [id]: value }));
+    };
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        setSubmissionStatus('submitting');
+        // Simulate API call for 1.5 seconds
+        setTimeout(() => {
+            setSubmissionStatus('success');
+            setFormState({ name: '', email: '', message: '' }); // Clear form
+        }, 1500);
+    };
 
     const handleThemeChange = (newTheme) => {
         setTheme(newTheme);
@@ -97,24 +116,36 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
                 )}
 
                 {activeTab === 'contact' && (
-                    <div className={styles.contactSection}>
-                        <h4>Get in Touch</h4>
-                        <form className={styles.contactForm}>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="name">Name</label>
-                                <input type="text" id="name" className={styles.formInput} />
+                    <>
+                        {submissionStatus !== 'success' ? (
+                            <div className={styles.contactSection}>
+                                <h4>Get in Touch</h4>
+                                <form className={styles.contactForm} onSubmit={handleFormSubmit}>
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" id="name" value={formState.name} onChange={handleFormChange} className={styles.formInput} required />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="email">Email</label>
+                                        <input type="email" id="email" value={formState.email} onChange={handleFormChange} className={styles.formInput} required />
+                                    </div>
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="message">Message</label>
+                                        <textarea id="message" rows="4" value={formState.message} onChange={handleFormChange} className={styles.formTextarea} required></textarea>
+                                    </div>
+                                    <button type="submit" className={styles.formButton} disabled={submissionStatus === 'submitting'}>
+                                        {submissionStatus === 'submitting' ? 'Sending...' : 'Send Message'}
+                                    </button>
+                                </form>
                             </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="email">Email</label>
-                                <input type="email" id="email" className={styles.formInput} />
+                        ) : (
+                            <div className={styles.contactSuccess}>
+                                <h4>Thank You!</h4>
+                                <p>Your message has been sent successfully.</p>
+                                <button onClick={() => setActiveTab('settings')} className={styles.formButton}>Back to Settings</button>
                             </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="message">Message</label>
-                                <textarea id="message" rows="4" className={styles.formTextarea}></textarea>
-                            </div>
-                            <button type="submit" className={styles.formButton}>Send Message</button>
-                        </form>
-                    </div>
+                        )}
+                    </>
                 )}
 
                 {activeTab === 'support' && (

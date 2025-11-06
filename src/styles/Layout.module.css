@@ -391,9 +391,8 @@ input:checked + .slider:before {
 }
 
 .contactSuccess {
-  color: green;
-  margin-top: 0.5rem;
   text-align: center;
+  padding: 2rem 1rem;
 }
 
 .contactError {
