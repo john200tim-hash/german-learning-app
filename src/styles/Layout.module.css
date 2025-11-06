@@ -506,6 +506,29 @@ input:checked + .slider:before {
   margin-bottom: 0;
 }
 
+.grammarGroup {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 1rem;
+}
+
+.grammarGroup:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.grammarGroupTitle {
+  font-size: 1.2rem;
+  color: var(--heading-color);
+  margin-bottom: 0.5rem;
+}
+
+.grammarGroupExplanation {
+  font-size: 0.95rem;
+  color: var(--subtab-text);
+  margin-bottom: 1.5rem;
+}
+
 .vocabWord {
   font-size: 1.5rem;
   font-weight: bold;

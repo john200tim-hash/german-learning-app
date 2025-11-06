@@ -5,9 +5,10 @@ import VocabCard from '../../components/lessons/VocabCard';
 import styles from '../../styles/Layout.module.css';
 
 const passiveSubstitutesData = [
-    { word: 'sein + zu + Infinitiv', meaning: 'Necessity or Obligation (must be done)', explanation: 'This construction is used to express that something must be done.', example: 'Die Rechnung ist zu bezahlen. (The bill must be paid.)' },
-    { word: 'sich lassen + Infinitiv', meaning: 'Possibility (can be done)', explanation: 'This construction is used to express that something is possible to do.', example: 'Das Problem lässt sich lösen. (The problem can be solved.)' },
-    { word: 'Adjektive auf -bar / -lich', meaning: 'Feasibility or Quality (is -able/-ible)', explanation: 'Adjectives ending in -bar or -lich often describe what can be done to the noun.', example: 'Das Wasser ist trinkbar. (The water is drinkable.)' }
+    { word: 'sein + zu + Infinitiv', meaning: 'Necessity or Obligation (must be done)', explanation: 'This strong construction is equivalent to using "müssen" or "sollen" with a passive verb. It expresses a clear obligation or necessity.', example: 'Die Rechnung ist zu bezahlen. (The bill must be paid.)' },
+    { word: 'sich lassen + Infinitiv', meaning: 'Possibility (can be done)', explanation: 'This construction is equivalent to using "können" with a passive verb. It expresses that an action is possible to perform on the subject.', example: 'Das Problem lässt sich lösen. (The problem can be solved.)' },
+    { word: 'Adjektive auf -bar / -lich / -abel', meaning: 'Feasibility or Quality (is -able/-ible)', explanation: 'Adjectives ending in these suffixes often describe what can be done to the noun. "-bar" and "-abel" usually mean "can be done," while "-lich" can also imply possibility.', example: 'Das Wasser ist trinkbar. (The water is drinkable.) Sein Verhalten ist inakzeptabel. (His behavior is unacceptable.)' },
+    { word: 'man + Aktiv', meaning: 'General Action (one does something)', explanation: 'Using the indefinite pronoun "man" with an active verb is a very common way to express a passive idea without specifying who is performing the action.', example: 'Man spricht hier Deutsch. (German is spoken here. / One speaks German here.)' }
 ];
 
 export default function PassiveSubstitutes({ searchTerm }) {
