@@ -19,10 +19,6 @@ export default function Layout({ children }) {
   // This ref is also used for attaching touch event listeners for swipe gestures.
   const mainContentRef = useRef(null);
 
-  // State for swipe detection
-  const touchStartX = useRef(0);
-  const swipeThreshold = 50; // Minimum pixels to swipe to trigger action
-
   const openContactModal = () => {
     setInitialModalTab('contact');
     setSettingsOpen(true);
@@ -57,37 +53,8 @@ export default function Layout({ children }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMobile, isSidebarOpen]);
 
-  // --- Swipe Gesture Handlers ---
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e) => {
-    // Prevent default scrolling only if a horizontal swipe is detected
-    const currentTouchX = e.touches[0].clientX;
-    const deltaX = currentTouchX - touchStartX.current;
-    if (Math.abs(deltaX) > 10) { // Small threshold to differentiate from vertical scroll
-      // e.preventDefault(); // Uncomment if you want to prevent vertical scrolling during horizontal swipe
-    }
-  };
-
-  const handleTouchEnd = (e) => {
-    if (!isMobile) return;
-
-    const touchEndX = e.changedTouches[0].clientX;
-    const deltaX = touchEndX - touchStartX.current;
-
-    if (deltaX > swipeThreshold && !isSidebarOpen) {
-      // Swipe right to open sidebar
-      setSidebarOpen(true);
-    } else if (deltaX < -swipeThreshold && isSidebarOpen) {
-      // Swipe left to close sidebar
-      setSidebarOpen(false);
-    }
-  };
-
   return (
-    <div className={`${styles.appWrapper} ${isSidebarOpen ? styles.sidebarOpen : ''}`} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+    <div className={`${styles.appWrapper} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>
       {/* Settings Button - always visible, fixed position */}
       <button className={styles.settingsButton} onClick={() => setSettingsOpen(true)} aria-label="Open settings">
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
