@@ -64,14 +64,10 @@ body.text-xxl {
 }
 
 html, body {
-    /* Ensure these are not duplicated if they exist elsewhere */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-    height: 100%;
-    margin: 0;
-    padding: 0;
+    height: 100%; /* Moved from outside the block */
 }
 
 h1 {
