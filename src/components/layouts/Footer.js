@@ -21,3 +21,6 @@ export default function Footer({ onContactClick, onSupportClick }) {
             <p className={styles.copyrightText}>
                 © John@2025
             </p>
+        </footer>
+    );
+}
