@@ -61,12 +61,13 @@
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column; /* Reverted to a vertical list */
+  flex-direction: row; /* Changed from column to row */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
   gap: 0.75rem;
 }
 
 .topicLink {
-  display: block; /* Each link takes its own line */
+  display: inline-block; /* Changed from block to inline-block */
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   text-decoration: none;
