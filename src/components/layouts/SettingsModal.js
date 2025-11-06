@@ -1,7 +1,6 @@
 // This file seems to be a partial snippet. Assuming the full component structure.
 
 import React, { useState, useEffect } from 'react';
-import { useForm, ValidationError } from '@formspree/react'; // Import useForm and ValidationError
 import { useTheme } from '../../context/ThemeContext';
 import styles from '../../styles/Layout.module.css';
 
@@ -15,25 +14,48 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
     useEffect(() => {
         if (isOpen) setActiveTab(initialTab);
     }, [initialTab, isOpen]);
-    
-    // Formspree hook
-    const [state, handleSubmit] = useForm("meopylpb"); // Your Formspree endpoint ID
+
+    // State for contact form
+    const [senderEmail, setSenderEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [contactStatus, setContactStatus] = useState(''); // 'success', 'error', 'sending', ''
 
     if (!isOpen) {
         return null;
     }
 
-    // If the form has been successfully submitted, display a success message
-    if (state.succeeded) {
-        return (
-            <div className={styles.modalOverlay} onClick={onClose}>
-                <div className={styles.modalContent}>
-                    <p className={styles.contactSuccess}>Message sent! Thank you for your feedback.</p>
-                    <button onClick={onClose} className={styles.formButton}>Close</button>
-                </div>
-            </div>
-        );
-    }
+    const handleSubmitContact = async (e) => {
+        e.preventDefault();
+        setContactStatus('sending');
+
+        if (!senderEmail || !message) {
+            setContactStatus('error');
+            return;
+        }
+
+        try {
+            // Replace with your actual Formspree endpoint URL
+            const formspreeEndpoint = 'https://formspree.io/f/meopylpb';
+
+            const res = await fetch(formspreeEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                },
+                body: new FormData(e.target), // Formspree can handle FormData directly
+            });
+
+            if (res.ok) {
+                setContactStatus('success');
+                setSenderEmail('');
+                setMessage('');
+            } else {
+                setContactStatus('error');
+            }
+        } catch (error) {
+            setContactStatus('error');
+        }
+    };
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
@@ -130,30 +152,20 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                     <div className={styles.modalBody}>
                         {/* Contact Section */}
                         <div className={styles.contactSection}>
-                            <form onSubmit={handleSubmit} className={styles.contactForm}>
+                            <form onSubmit={handleSubmitContact} className={styles.contactForm}>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="contact-email">Your Reply-To Email</label>
-                                    <input type="email" id="contact-email" name="email" className={styles.formInput} required />
-                                    <ValidationError
-                                        prefix="Email"
-                                        field="email"
-                                        errors={state.errors}
-                                        className={styles.contactError}
-                                    />
+                                    <input type="email" id="contact-email" name="email" className={styles.formInput} value={senderEmail} onChange={(e) => setSenderEmail(e.target.value)} required />
                                 </div>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="contact-message">Message</label> 
-                                    <textarea id="contact-message" name="message" className={styles.formTextarea} rows="4" required ></textarea>
-                                    <ValidationError
-                                        prefix="Message"
-                                        field="message"
-                                        errors={state.errors}
-                                        className={styles.contactError}
-                                    />
+                                    <textarea id="contact-message" name="message" className={styles.formTextarea} value={message} onChange={(e) => setMessage(e.target.value)} rows="4" required ></textarea>
                                 </div>
-                                <button type="submit" className={styles.formButton} disabled={state.submitting}>
-                                    Send Message
+                                <button type="submit" className={styles.formButton} disabled={contactStatus === 'sending'}>
+                                    {contactStatus === 'sending' ? 'Sending...' : 'Send Message'}
                                 </button>
+                                {contactStatus === 'success' && <p className={styles.contactSuccess}>Message sent! Thank you.</p>}
+                                {contactStatus === 'error' && <p className={styles.contactError}>Failed to send message. Please try again later.</p>}
                             </form>
                         </div>
                     </div>
