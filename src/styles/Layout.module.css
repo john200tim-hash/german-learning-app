@@ -1,8 +1,7 @@
 /* src/styles/Layout.module.css */
 
 .appWrapper {
-  position: relative;
-}
+  
 
 .mainContainer {
   display: flex;
@@ -15,9 +14,7 @@
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   padding: 2rem 0;
-  transition: transform 0.3s ease-in-out;
-  z-index: 20;
-  flex-shrink: 0; /* Prevents the sidebar from shrinking */
+  z-index: 20;revr from shrinking */
 }
 
 .sidebarTitle {
@@ -335,4 +332,5 @@ input:checked + .slider:before {
 .activeSegment {
   background-color: var(--active-tab-bg) !important;
   color: white !important;
+}
 }

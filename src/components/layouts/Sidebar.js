@@ -18,7 +18,6 @@ export default function Sidebar() {
         <nav className={styles.sidebarContainer}>
             <h2 className={styles.sidebarTitle}>Learn German</h2>
             {navItems.map(({ href, label }) => (
-                // The Link component was corrupted. This restores the correct structure.
                 <Link href={href} key={label} className={`${styles.tabBtn} ${router.pathname.startsWith(href) && href !== '/' || router.pathname === href ? styles.active : ''}`}>
                     <span>{label}</span>
                 </Link>
