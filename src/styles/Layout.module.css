@@ -11,7 +11,6 @@
 
 .mainContainer {
   display: flex;
-  min-height: 100vh;
   flex-grow: 1; /* Allow this container to grow and push the footer down */
 }
 
@@ -25,32 +24,30 @@
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   padding: 2rem 0;
-  z-index: 1000;
+  z-index: 1010; /* Highest z-index for sidebar */
   transform: translateX(-100%); /* Hidden by default */
   transition: transform 0.3s ease-in-out;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add shadow for slide-in effect */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebarOpen .sidebarContainer {
   transform: translateX(0);
 }
 
-/* Desktop styles for sidebar */
 @media (min-width: 1024px) {
   .appWrapper {
-    padding-left: 240px; /* Make space for the always-visible sidebar */
+    padding-left: 240px;
   }
   .sidebarContainer {
-    transform: translateX(0); /* Always visible on desktop */
+    transform: translateX(0);
   }
 }
 
 .sidebarOverlay {
-  /* This overlay appears when the sidebar is open on mobile */
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999; /* Below sidebar, above content */
+  z-index: 1009; /* Below sidebar, above content */
 }
 
 /* --- Vertical Tabs (Sidebar) --- */
@@ -76,7 +73,7 @@
 
 .active {
   background-color: var(--active-tab-bg);
-  color: #111827; /* gray-900 */
+  color: #111827;
 }
 
 /* --- Content Area --- */
@@ -88,47 +85,42 @@
 }
 @media (min-width: 1024px) {
   .contentArea {
-    padding: 2rem; /* Keep padding on desktop */
+    padding: 2rem;
   }
 }
 
 /* --- Hamburger & Settings Buttons --- */
 .hamburgerButton {
-  position: fixed; /* Fixed position for mobile hamburger */
+  position: fixed;
   top: 1rem;
   left: 1rem;
   background: none;
   border: none;
   color: var(--text-color);
-  width: 48px; /* Make it a decent tap target */
+  width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%; /* Make it round */
-  background-color: var(--card-bg); /* Give it a background */
+  border-radius: 50%;
+  background-color: var(--card-bg);
   cursor: pointer;
   padding: 0.5rem;
-  z-index: 1001; /* Above sidebar */
+  z-index: 1002;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 @media (min-width: 1024px) {
   .hamburgerButton {
-    display: none; /* Hide hamburger on desktop */
-  }
-  .settingsButton {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
+    display: none;
   }
 }
 
-/* --- Settings Button & Modal --- */
 .settingsButton {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  z-index: 1001; /* Ensure it's above other content */
+  z-index: 1002;
   width: 48px;
   height: 48px;
   background-color: var(--card-bg);
@@ -139,15 +131,144 @@
   justify-content: center;
   cursor: pointer;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .settingsButton:hover {
   transform: rotate(45deg);
 }
 
+/* --- Settings Modal --- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2000; /* Highest z-index */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 1rem;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--heading-color);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.segmentedControl {
+  display: flex;
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.segmentedControl button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--text-color);
+  border-left: 1px solid var(--card-border);
+}
+
+.segmentedControl button:first-child {
+  border-left: none;
+}
+
+.activeSegment {
+  background-color: var(--active-tab-bg) !important;
+  color: white !important;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--active-tab-bg);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
 /* --- Sub-tabs (Horizontal Scrolling with Fades) --- */
-/* This wrapper is essential for the fade effect */
 .subTabsWrapper {
   position: relative;
   border-bottom: 2px solid var(--card-border);
@@ -157,12 +278,11 @@
   display: flex;
   overflow-x: auto;
   white-space: nowrap;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  /* Hide scrollbar */
-  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 .subTabs::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
 }
 
 .subTabBtn {
@@ -172,6 +292,12 @@
   color: var(--subtab-text);
   border-bottom: 2px solid transparent;
   transition: border-bottom-color 0.2s ease;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .subTabBtn:hover {
@@ -185,9 +311,7 @@
 
 /* --- Contact Form Styles --- */
 .contactSection {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--card-border);
+  padding-top: 1rem;
 }
 
 .contactSection h4 {
@@ -222,7 +346,7 @@
 }
 
 .formButton {
-  background-color: var(--active-tab-bg); /* Use the theme's active color */
+  background-color: var(--active-tab-bg);
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -230,14 +354,15 @@
   cursor: pointer;
   font-weight: 600;
   transition: opacity 0.2s ease;
+  margin-top: 0.5rem;
 }
 
 .formButton:hover {
-  opacity: 0.9; /* A simple, universal hover effect */
+  opacity: 0.9;
 }
 
 .formButton:disabled {
-  background-color: #9ca3af; /* A neutral gray for the disabled state */
+  background-color: #9ca3af;
   cursor: not-allowed;
   opacity: 0.7;
 }
@@ -256,12 +381,11 @@
 
 /* --- Support Section in Settings Modal --- */
 .supportSection {
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: left;
-  background-color: var(--bg-color); /* Use background color for contrast */
+  background-color: var(--bg-color);
   border-radius: 0.5rem;
   border: 1px solid var(--card-border);
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
 }
 
 .supportSection p {
@@ -272,43 +396,112 @@
 
 .supportSection h4 {
   font-size: 1.3rem;
-  color: var(--heading-color); /* Use heading color for title */
+  color: var(--heading-color);
   margin-bottom: 1.2rem;
   text-align: center;
-  border-bottom: 2px solid var(--active-tab-border); /* Accent line */
+  border-bottom: 2px solid var(--active-tab-border);
   padding-bottom: 0.5rem;
 }
 
-/* Add global text size utilities */
+/* --- Footer --- */
 .footer {
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   text-align: center;
   font-size: 0.9rem;
+  border-top: 1px solid var(--card-border);
 }
 
-.footerSupport {
-    display: flex;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.footerLinks {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footerLink {
+  background: none;
+  border: none;
+  color: var(--active-tab-border);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+  font-weight: 600;
 }
 
 .supportNumber {
-    font-family: 'Courier New', monospace; /* Distinct font */
-    color: var(--active-tab-bg); /* Highlight color */
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--active-tab-border);
     font-weight: bold;
-    margin-left: 0.5em;
+    margin-left: 0.25rem;
 }
 
-.questionMark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    border: 1px solid var(--sidebar-text);
-    font-size: 0.7rem;
+/* --- STYLISTIC & UNIFORM CONTENT STYLES --- */
+.contentCard {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contentCard h2 {
+  margin-top: 0;
+  color: var(--heading-color);
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.vocabCard {
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.vocabCard:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.vocabWord {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--heading-color);
+}
+
+.vocabMeaning {
+  font-style: italic;
+  color: var(--subtab-text);
+  margin-bottom: 0.5rem;
+}
+
+.vocabExplanation {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.exampleSentence {
+  background-color: var(--bg-color);
+  border-left: 4px solid var(--active-tab-border);
+  padding: 0.75rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+.translationDropdown summary {
+  cursor: pointer;
+  color: var(--subtab-text);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.translationDropdown p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
 }

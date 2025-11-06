@@ -8,23 +8,25 @@ import styles from '../../styles/Layout.module.css';
 export default function SettingsModal({ isOpen, onClose, initialTab = 'settings' }) {
     const { theme, handleThemeChange, textSize, setTextSize, isColorBlend, setColorBlend, colorMode, handleColorModeChange } = useTheme();
 
-    // State for tabs
-    const [activeTab, setActiveTab] = useState(initialTab);
-
-    // Update the active tab if the initialTab prop changes while the modal is open
-    useEffect(() => {
-        if (isOpen) setActiveTab(initialTab);
-    }, [initialTab, isOpen]);
+    // --- All hooks must be called at the top, unconditionally ---
 
     // Formspree hook for the contact form
     const [state, handleSubmit, resetForm] = useForm("meopylpb");
+
+    // State for tabs
+    const [activeTab, setActiveTab] = useState(initialTab);
 
     // Function to handle returning to settings after successful submission
     const handleReturnToSettings = useCallback(() => {
         resetForm(); // Reset the form state
         setActiveTab('settings'); // Switch back to settings tab
     }, [resetForm]);
-    
+
+    // Update the active tab if the initialTab prop changes while the modal is open
+    useEffect(() => {
+        if (isOpen) setActiveTab(initialTab);
+    }, [initialTab, isOpen]);
+
     // Effect to reset form state when modal closes or tab changes from contact
     useEffect(() => {
         if (!isOpen || activeTab !== 'contact') {
@@ -32,7 +34,9 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
         }
     }, [isOpen, activeTab, resetForm]);
 
-    // All hooks are now above this line. It is safe to return early.
+    // --- End of hooks section ---
+
+    // Now it is safe to return early if the modal is not open.
     if (!isOpen) {
         return null;
     }
