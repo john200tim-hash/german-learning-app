@@ -54,6 +54,10 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                         className={`${styles.subTabBtn} ${activeTab === 'contact' ? styles.activeSubTab : ''}`}
                         onClick={() => setActiveTab('contact')}
                     >Contact</button>
+                    <button
+                        className={`${styles.subTabBtn} ${activeTab === 'support' ? styles.activeSubTab : ''}`}
+                        onClick={() => setActiveTab('support')}
+                    >Support</button>
                 </div>
 
                 {activeTab === 'settings' && (
@@ -165,6 +169,16 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                             {state.succeeded && (
                                 <button onClick={handleReturnToSettings} className={styles.formButton}>Back to Settings</button>
                             )}
+                        </div>
+                    </div>
+                )}
+
+                {activeTab === 'support' && (
+                    <div className={styles.modalBody}>
+                        <div className={styles.supportSection}>
+                            <h4>Why Support?</h4>
+                            <p>This project is a labor of love, built and maintained in my spare time.</p>
+                            <p>Your support helps cover server costs, allows for the addition of new features, and keeps the learning content free and accessible for everyone. Thank you for being a part of this journey!</p>
                         </div>
                     </div>
                 )}

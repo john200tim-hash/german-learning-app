@@ -232,6 +232,16 @@
   text-align: center;
 }
 
+.supportSection {
+  padding: 1rem;
+  text-align: left;
+}
+
+.supportSection p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
 /* Add global text size utilities */
 .footer {
   background-color: var(--sidebar-bg);

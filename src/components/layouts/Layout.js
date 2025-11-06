@@ -24,6 +24,11 @@ export default function Layout({ children }) {
     setSettingsOpen(true);
   };
 
+  const openSupportModal = () => {
+    setInitialModalTab('support');
+    setSettingsOpen(true);
+  };
+
   // Detect mobile view
   useEffect(() => {
     const checkMobile = () => {
@@ -78,8 +83,8 @@ export default function Layout({ children }) {
         <Sidebar isOpen={isSidebarOpen} />
         <main ref={mainContentRef} className={styles.contentArea}>{children}</main>
       </div>
-      <Footer onContactClick={openContactModal} />
-      <SupportPopup onContactClick={openContactModal} /> {/* Add the popup */}
+      <Footer onContactClick={openContactModal} onSupportClick={openSupportModal} />
+      <SupportPopup onContactClick={openSupportModal} /> {/* Add the popup */}
     </div>
   );
 }
