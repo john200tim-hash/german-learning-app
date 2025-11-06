@@ -9,7 +9,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light'); // 'light', 'dark', or 'high-contrast'
-  const [textSize, setTextSize] = useState('base'); // 'sm', 'base', or 'lg'
+  const [textSize, setTextSize] = useState('base'); // 'sm', 'base', 'lg', 'xl', 'xxl'
   const [isColorBlend, setColorBlend] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const ThemeProvider = ({ children }) => {
 
     root.className = ''; // Clear existing classes
     root.classList.add(theme);
-    body.classList.remove("text-sm", "text-base", "text-lg");
+    body.classList.remove("text-sm", "text-base", "text-lg", "text-xl", "text-xxl");
     body.classList.add(`text-${textSize}`);
 
     if (isColorBlend) {
@@ -49,16 +49,21 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('isColorBlend', isColorBlend);
   }, [theme, textSize, isColorBlend]);
 
-  // This function allows setting the theme directly
-  const handleThemeChange = (newTheme) => {
-    setTheme(newTheme);
+  // This function cycles through the available themes
+  const cycleTheme = () => {
+    setTheme((currentTheme) => {
+      if (currentTheme === 'light') return 'dark';
+      if (currentTheme === 'dark') return 'high-contrast';
+      return 'light'; // Cycle from 'high-contrast' back to 'light'
+    });
   };
+
   // Provide the context value
   const value = {
     theme,
     textSize,
     isColorBlend,
-    handleThemeChange, // Provide the new function
+    cycleTheme, // Provide the new cycling function
     setTextSize,
     setColorBlend,
   };
