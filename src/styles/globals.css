@@ -1,0 +1,76 @@
+/* src/styles/globals.css */
+
+/* --- Color Palette & Dark Mode --- */
+:root {
+    --bg-color: #f3f4f6; /* gray-100 */
+    --text-color: #374151; /* gray-700 */
+    --card-bg: #ffffff;
+    --card-border: #e5e7eb; /* gray-200 */
+    --sidebar-bg: #1f2937; /* gray-800 */
+    --sidebar-text: #d1d5db; /* gray-300 */
+    --subtab-text: #6b7280; /* gray-500 */
+    --active-tab-bg: #4f46e5; /* indigo-600 */
+    --active-tab-border: #a5b4fc; /* indigo-300 */
+    --heading-color: #4338ca; /* indigo-700 */
+}
+
+html.dark {
+    --bg-color: #111827; /* gray-900 */
+    --text-color: #d1d5db; /* gray-300 */
+    --card-bg: #1f2937; /* gray-800 */
+    --card-border: #374151; /* gray-700 */
+    --sidebar-bg: #000000;
+    --sidebar-text: #e5e7eb; /* gray-200 */
+    --subtab-text: #9ca3af; /* gray-400 */
+    --active-tab-bg: #6366f1; /* indigo-500 */
+    --active-tab-border: #c7d2fe; /* indigo-200 */
+    --heading-color: #818cf8; /* indigo-400 */
+}
+
+html.high-contrast {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --card-bg: #000000;
+    --card-border: #ffffff;
+    --sidebar-bg: #000000;
+    --active-tab-bg: #ffff00; /* Yellow */
+    --active-tab-border: #ffff00;
+    --heading-color: #ffff00;
+}
+
+/* --- Base & Fonts --- */
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Text Size Classes --- */
+body.text-sm {
+    font-size: 0.9rem;
+}
+body.text-base {
+    font-size: 1rem;
+}
+body.text-lg {
+    font-size: 1.1rem;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}

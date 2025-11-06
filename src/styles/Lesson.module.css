@@ -1,0 +1,126 @@
+/* src/styles/Lesson.module.css */
+
+.lessonContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.tabContainer {
+  display: flex;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 2rem;
+}
+
+.tabButton {
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 1.1rem;
+  color: #718096;
+  position: relative;
+  top: 2px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.tabButton:hover {
+  color: #2d3748;
+}
+
+.activeTab {
+  color: #4299e1;
+  border-bottom-color: #4299e1;
+  font-weight: bold;
+}
+
+.lessonArticle {
+  line-height: 1.6;
+}
+
+.lessonArticle h2 {
+  font-size: 2rem;
+  color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lessonArticle h3 {
+  font-size: 1.5rem;
+  color: #4a5568;
+}
+
+.lessonArticle blockquote {
+  border-left: 4px solid #4299e1;
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: #718096;
+}
+
+.quizSection {
+  margin-top: 3rem;
+}
+
+.questionText {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.optionLabel {
+  display: block;
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.optionLabel:hover {
+  border-color: #4299e1;
+  background-color: #ebf8ff;
+}
+
+.optionInput {
+  display: none; /* Hide the default radio button */
+}
+
+/* Style for the selected label */
+.optionInput:checked + .optionLabel {
+  border-color: #4299e1;
+  background-color: #ebf8ff;
+  box-shadow: 0 0 0 2px #4299e1;
+}
+
+.resultsContainer {
+  text-align: center;
+  padding: 2rem;
+}
+
+.progressBarContainer {
+  width: 100%;
+  background-color: #e2e8f0; /* Light gray */
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.progressBar {
+  height: 12px;
+  background-color: #4299e1; /* Blue */
+  border-radius: 0.5rem;
+  transition: width 0.3s ease-in-out;
+}
