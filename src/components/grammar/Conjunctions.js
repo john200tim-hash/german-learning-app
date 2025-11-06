@@ -1,7 +1,7 @@
 // src/components/grammar/Conjunctions.js
 
 import React from 'react';
-import VocabCard from '../../components/lessons/VocabCard';
+import ConjunctionsCard from '../../components/lessons/ConjunctionsCard'; // Use the new, specific card
 import styles from '../../styles/Layout.module.css';
 
 const conjunctionsData = [
@@ -72,7 +72,7 @@ export default function Conjunctions({ searchTerm }) {
             <h3 className={styles.grammarGroupTitle}>{group.category}</h3>
             <p className={styles.grammarGroupExplanation}>{group.explanation}</p>
             {group.items.map((item, itemIndex) => (
-              <VocabCard key={itemIndex} item={item} />
+              <ConjunctionsCard key={itemIndex} item={item} />
             ))}
           </div>
         ))
