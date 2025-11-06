@@ -1,6 +1,6 @@
 // This file seems to be a partial snippet. Assuming the full component structure.
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react'; // Added useCallback
 import { useForm, ValidationError } from '@formspree/react';
 import { useTheme } from '../../context/ThemeContext';
 import styles from '../../styles/Layout.module.css';
@@ -15,25 +15,26 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
     useEffect(() => {
         if (isOpen) setActiveTab(initialTab);
     }, [initialTab, isOpen]);
-    
+
     // Formspree hook, using your unique endpoint ID.
-    const [state, handleSubmit] = useForm("meopylpb");
+    const [state, handleSubmit, resetForm] = useForm("meopylpb"); // Added resetForm
 
     if (!isOpen) {
         return null;
     }
 
-    // After successful submission, show a thank you message and a close button.
-    if (state.succeeded && activeTab === 'contact') {
-        return (
-            <div className={styles.modalOverlay} onClick={onClose}>
-                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                    <p className={styles.contactSuccess}>Message sent! Thank you for your feedback.</p>
-                    <button onClick={onClose} className={styles.formButton}>Close</button>
-                </div>
-            </div>
-        );
-    }
+    // Function to handle returning to settings after successful submission
+    const handleReturnToSettings = useCallback(() => {
+        resetForm(); // Reset the form state
+        setActiveTab('settings'); // Switch back to settings tab
+    }, [resetForm]);
+
+    // Effect to reset form state when modal closes or tab changes from contact
+    useEffect(() => {
+        if (!isOpen || activeTab !== 'contact') {
+            resetForm();
+        }
+    }, [isOpen, activeTab, resetForm]);
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
@@ -154,7 +155,16 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                                 <button type="submit" className={styles.formButton} disabled={state.submitting}>
                                     Send Message
                                 </button>
+                                {state.succeeded && (
+                                    <p className={styles.contactSuccess}>Message sent! Thank you.</p>
+                                )}
+                                {state.errors && state.errors.length > 0 && (
+                                    <p className={styles.contactError}>Failed to send message. Please check your input.</p>
+                                )}
                             </form>
+                            {state.succeeded && (
+                                <button onClick={handleReturnToSettings} className={styles.formButton}>Back to Settings</button>
+                            )}
                         </div>
                     </div>
                 )}

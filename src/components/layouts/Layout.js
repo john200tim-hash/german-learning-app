@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'; // Added useRef
 import Footer from './Footer';
+import SupportPopup from './SupportPopup'; // Import the new component
 import Sidebar from './Sidebar';
 import SettingsModal from './SettingsModal';
 import styles from '../../styles/Layout.module.css';
@@ -78,6 +79,7 @@ export default function Layout({ children }) {
         <main ref={mainContentRef} className={styles.contentArea}>{children}</main>
       </div>
       <Footer onContactClick={openContactModal} />
+      <SupportPopup onContactClick={openContactModal} /> {/* Add the popup */}
     </div>
   );
 }
