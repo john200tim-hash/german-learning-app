@@ -40,9 +40,10 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
             const res = await fetch(formspreeEndpoint, {
                 method: 'POST',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: new FormData(e.target), // Formspree can handle FormData directly
+                body: JSON.stringify({ email: senderEmail, message: message }),
             });
 
             if (res.ok) {
