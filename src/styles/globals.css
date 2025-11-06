@@ -36,6 +36,8 @@ html.high-contrast.mode-a {
     --card-bg: #000000;
     --card-border: #ffffff;
     --sidebar-bg: #000000;
+    --sidebar-text: #ffffff;
+    --subtab-text: #ffffff;
     --active-tab-bg: #ffff00; /* Yellow */
     --active-tab-border: #ffff00;
     --heading-color: #ffff00;
@@ -70,6 +72,20 @@ html.dark.mode-b {
     --heading-color: #dda15e;
 }
 
+/* High Contrast Mode B */
+html.high-contrast.mode-b {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --card-bg: #000000;
+    --card-border: #ffffff;
+    --sidebar-bg: #000000;
+    --sidebar-text: #ffffff;
+    --subtab-text: #ffffff;
+    --active-tab-bg: #32cd32; /* Lime Green */
+    --active-tab-border: #32cd32;
+    --heading-color: #32cd32;
+}
+
 /* --- COLOR MODE C (Ocean Blue) --- */
 /* Light Mode C */
 :root.mode-c {
@@ -99,6 +115,20 @@ html.dark.mode-c {
     --heading-color: #fb8500;
 }
 
+/* High Contrast Mode C */
+html.high-contrast.mode-c {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --card-bg: #000000;
+    --card-border: #ffffff;
+    --sidebar-bg: #000000;
+    --sidebar-text: #ffffff;
+    --subtab-text: #ffffff;
+    --active-tab-bg: #00ffff; /* Cyan */
+    --active-tab-border: #00ffff;
+    --heading-color: #00ffff;
+}
+
 /* --- COLOR MODE D (Sakura Pink) --- */
 /* Light Mode D */
 :root.mode-d {
@@ -126,6 +156,20 @@ html.dark.mode-d {
     --active-tab-bg: #ff80ab;
     --active-tab-border: #fde8f0;
     --heading-color: #ff80ab;
+}
+
+/* High Contrast Mode D */
+html.high-contrast.mode-d {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --card-bg: #000000;
+    --card-border: #ffffff;
+    --sidebar-bg: #000000;
+    --sidebar-text: #ffffff;
+    --subtab-text: #ffffff;
+    --active-tab-bg: #ff00ff; /* Magenta */
+    --active-tab-border: #ff00ff;
+    --heading-color: #ff00ff;
 }
 
 /* --- Base & Fonts --- */
