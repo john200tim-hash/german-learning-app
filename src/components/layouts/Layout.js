@@ -16,7 +16,6 @@ export default function Layout({ children }) {
   const [isMobile, setIsMobile] = useState(false); // New state to track mobile view
 
   // Ref for the main content area to detect clicks outside sidebar
-  // This ref is also used for attaching touch event listeners for swipe gestures.
   const mainContentRef = useRef(null);
 
   const openContactModal = () => {
