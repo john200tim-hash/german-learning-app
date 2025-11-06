@@ -8,6 +8,7 @@
     --card-bg: #ffffff;
     --card-border: #e5e7eb; /* gray-200 */
     --sidebar-bg: #1f2937; /* gray-800 */
+    --text-color-rgb: 55, 65, 81; /* RGB for --text-color */
     --sidebar-text: #d1d5db; /* gray-300 */
     --subtab-text: #6b7280; /* gray-500 */
     --active-tab-bg: #4f46e5; /* indigo-600 */
@@ -21,6 +22,7 @@ html.dark.mode-a {
     --text-color: #d1d5db; /* gray-300 */
     --card-bg: #1f2937; /* gray-800 */
     --card-border: #374151; /* gray-700 */
+    --text-color-rgb: 209, 213, 219; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #e5e7eb; /* gray-200 */
     --subtab-text: #9ca3af; /* gray-400 */
@@ -35,6 +37,7 @@ html.high-contrast.mode-a {
     --text-color: #ffffff;
     --card-bg: #000000;
     --card-border: #ffffff;
+    --text-color-rgb: 255, 255, 255; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #ffffff;
     --subtab-text: #ffffff;
@@ -50,6 +53,7 @@ html.high-contrast.mode-a {
     --text-color: #4d4c4a; /* Dark brown-gray */
     --card-bg: #ffffff;
     --card-border: #e5e7eb;
+    --text-color-rgb: 77, 76, 74; /* RGB for --text-color */
     --sidebar-bg: #283618; /* Dark olive */
     --sidebar-text: #fefae0; /* Cornsilk */
     --subtab-text: #606c38; /* Olive */
@@ -64,6 +68,7 @@ html.dark.mode-b {
     --text-color: #fefae0; /* Cornsilk */
     --card-bg: #2a2a2a; /* Darker gray */
     --card-border: #4d4c4a;
+    --text-color-rgb: 254, 250, 224; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #fefae0;
     --subtab-text: #dda15e;
@@ -78,6 +83,7 @@ html.high-contrast.mode-b {
     --text-color: #ffffff;
     --card-bg: #000000;
     --card-border: #ffffff;
+    --text-color-rgb: 255, 255, 255; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #ffffff;
     --subtab-text: #ffffff;
@@ -93,6 +99,7 @@ html.high-contrast.mode-b {
     --text-color: #003049; /* Dark blue */
     --card-bg: #ffffff;
     --card-border: #e0fbfc;
+    --text-color-rgb: 0, 48, 73; /* RGB for --text-color */
     --sidebar-bg: #003049; /* Dark blue */
     --sidebar-text: #e0fbfc; /* Light cyan */
     --subtab-text: #0077b6; /* Medium blue */
@@ -107,6 +114,7 @@ html.dark.mode-c {
     --text-color: #e0fbfc; /* Light cyan */
     --card-bg: #001d3d; /* Even darker blue */
     --card-border: #003049;
+    --text-color-rgb: 224, 251, 252; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #e0fbfc;
     --subtab-text: #fb8500; /* Orange */
@@ -121,6 +129,7 @@ html.high-contrast.mode-c {
     --text-color: #ffffff;
     --card-bg: #000000;
     --card-border: #ffffff;
+    --text-color-rgb: 255, 255, 255; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #ffffff;
     --subtab-text: #ffffff;
@@ -136,6 +145,7 @@ html.high-contrast.mode-c {
     --text-color: #5c2a3b; /* Deep magenta */
     --card-bg: #ffffff;
     --card-border: #fce4ec;
+    --text-color-rgb: 92, 42, 59; /* RGB for --text-color */
     --sidebar-bg: #e91e63; /* Main pink */
     --sidebar-text: #ffffff;
     --subtab-text: #c2185b; /* Darker pink */
@@ -150,6 +160,7 @@ html.dark.mode-d {
     --text-color: #fde8f0; /* Light pink */
     --card-bg: #3c0d2c;
     --card-border: #880e4f;
+    --text-color-rgb: 253, 232, 240; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #fde8f0;
     --subtab-text: #ff80ab; /* Bright pink */
@@ -164,6 +175,7 @@ html.high-contrast.mode-d {
     --text-color: #ffffff;
     --card-bg: #000000;
     --card-border: #ffffff;
+    --text-color-rgb: 255, 255, 255; /* RGB for --text-color */
     --sidebar-bg: #000000;
     --sidebar-text: #ffffff;
     --subtab-text: #ffffff;

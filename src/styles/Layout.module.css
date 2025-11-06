@@ -1,3 +1,327 @@
+/* src/styles/Layout.module.css */
+
+/* --- Base Styles --- */
+.appWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative; /* Needed for sidebar overlay and fixed buttons */
+  transition: padding-left 0.3s ease-in-out;
+}
+
+.mainContainer {
+  display: flex;
+  flex-grow: 1; /* Allow this container to grow and push the footer down */
+}
+
+/* --- Collapsible Sidebar --- */
+.sidebarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 240px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 2rem 0;
+  z-index: 1010; /* Highest z-index for sidebar */
+  transform: translateX(-100%); /* Hidden by default */
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebarOpen .sidebarContainer {
+  transform: translateX(0);
+}
+
+@media (min-width: 1024px) {
+  .appWrapper {
+    padding-left: 240px;
+  }
+  .sidebarContainer {
+    transform: translateX(0);
+  }
+}
+
+.sidebarOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1009; /* Below sidebar, above content */
+}
+
+/* --- Vertical Tabs (Sidebar) --- */
+.sidebarTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--heading-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.tabBtn {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  color: var(--sidebar-text);
+  transition: background-color 0.2s ease;
+}
+
+.tabBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.active {
+  background-color: var(--active-tab-bg);
+  color: #111827;
+}
+
+/* --- Content Area --- */
+.contentArea {
+  flex-grow: 1;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  background-color: var(--bg-color);
+}
+@media (min-width: 1024px) {
+  .contentArea {
+    padding: 2rem;
+  }
+}
+
+/* --- Hamburger & Settings Buttons --- */
+.hamburgerButton {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1002;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 1024px) {
+  .hamburgerButton {
+    display: none;
+  }
+}
+
+.settingsButton {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1002;
+  width: 48px;
+  height: 48px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.settingsButton:hover {
+  transform: rotate(45deg);
+}
+
+.settingsOpen {
+  transform: rotate(90deg);
+}
+
+.settingsOpen {
+  transform: rotate(90deg);
+}
+
+/* --- Settings Modal --- */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 2000; /* Highest z-index */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 1rem;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--heading-color);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.segmentedControl {
+  display: flex;
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.segmentedControl button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: var(--text-color);
+  border-left: 1px solid var(--card-border);
+}
+
+.segmentedControl button:first-child {
+  border-left: none;
+}
+
+.activeSegment {
+  background-color: var(--active-tab-bg) !important;
+  color: white !important;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--active-tab-bg);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* --- Sub-tabs (Horizontal Scrolling with Fades) --- */
+.subTabsWrapper {
+  position: relative;
+  border-bottom: 2px solid var(--card-border);
+  margin-bottom: 1.5rem;
+}
+.subTabs {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.subTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.subTabBtn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  color: var(--subtab-text);
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s ease;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.subTabBtn:hover {
+  color: var(--active-tab-bg);
+}
+
+.activeSubTab {
+  color: var(--active-tab-bg);
+  border-bottom-color: var(--active-tab-bg);
+}
+
+/* --- Search Bar --- */
+.searchBarContainer {
+  margin-bottom: 1.5rem;
+}
+
 .searchInput {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -17,15 +341,302 @@
   padding-top: 1rem;
 }
 
+.contactSection h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.formInput,
+.formTextarea {
+  padding: 0.75rem;
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.formButton {
+  background-color: var(--active-tab-bg);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.formButton:hover {
+  opacity: 0.9;
+}
+
+.formButton:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.contactSuccess {
+  color: green;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.contactError {
+  color: red;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* --- Support Section in Settings Modal --- */
+.supportSection {
+  padding: 1rem;
+  text-align: left;
+  background-color: var(--bg-color);
+  border-radius: 0.5rem;
+  border: 1px solid var(--card-border);
+}
+
+.supportSection p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.supportSection h4 {
+  font-size: 1.3rem;
+  color: var(--heading-color);
+  margin-bottom: 1.2rem;
+  text-align: center;
+  border-bottom: 2px solid var(--active-tab-border);
+  padding-bottom: 0.5rem;
+}
+
+/* --- Footer --- */
+.footer {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.footerLinks {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footerLink {
+  background: none;
+  border: none;
+  color: var(--active-tab-border);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+  font-weight: 600;
+}
+
+.supportNumber {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--active-tab-border);
+    font-weight: bold;
+    margin-left: 0.25rem;
+}
+
+/* --- STYLISTIC & UNIFORM CONTENT STYLES --- */
+.contentCard {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contentCard h2 {
+  margin-top: 0;
+  color: var(--heading-color);
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.vocabCard {
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.vocabCard:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.vocabWord {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--heading-color);
+}
+
+.vocabMeaning {
+  font-style: italic;
+  color: var(--subtab-text);
+  margin-bottom: 0.5rem;
+}
+
+.vocabExplanation {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.exampleSentence {
+  background-color: var(--bg-color);
+  border-left: 4px solid var(--active-tab-border);
+  padding: 0.75rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+.translationDropdown summary {
+  cursor: pointer;
+  color: var(--subtab-text);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.translationDropdown p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+/* --- Quiz Styles --- */
+.quizContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.quizQuestion {
+  font-size: 1.2rem;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+.quizInput {
+  padding: 0.75rem;
+  border: 2px solid var(--card-border);
+  border-radius: 0.5rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  text-align: center;
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 300px;
+  transition: border-color 0.3s;
+}
+
+.feedbackCorrect {
+  border-color: #22c55e; /* green-500 */
+}
+
+.feedbackIncorrect {
+  border-color: #ef4444; /* red-500 */
+}
+
+.quizScore {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.quizInstruction {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--subtab-text);
+}
+
+.feedbackCorrectText {
+  color: #22c55e; /* green-500 */
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.feedbackIncorrectText {
+  color: #ef4444; /* red-500 */
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+/* --- Quiz Styles Enhancements --- */
+.quizQuestionNumber {
+  font-size: 0.9rem;
+  color: var(--subtab-text);
+  margin-bottom: 0.5rem;
+}
+
+.quizQuestionText {
+  font-size: 1.4rem; /* Slightly larger for prominence */
+  font-family: 'Georgia', serif;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--heading-color);
+  line-height: 1.5;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid var(--active-tab-bg);
+  background-color: var(--bg-color);
+  border-radius: 0 8px 8px 0;
+}
+
+/* --- Pronoun Table Styles --- */
+.tableContainer {
+  overflow-x: auto; /* Allows table to be scrolled on small screens */
+  margin-top: 1rem;
+}
+
+.pronounTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
 .pronounTable th,
 .pronounTable td {
-  padding: 1rem 1.25rem; /* Corrected padding value */
+  padding: 1rem 1.25rem; /* Increased padding for more space */
+  text-align: left;
   border-bottom: 1px solid var(--card-border);
 }
 
 .pronounTable th {
   background-color: var(--bg-color);
-  color: var(--subtab-text); /* Added missing semicolon */
+  color: var(--subtab-text);
+  font-weight: 600;
   border-top: 1px solid var(--card-border);
 }
 
@@ -44,3 +655,43 @@
   font-weight: 600;
   color: var(--text-color);
 }
+
+.pronounTable td:nth-child(3) em {
+  font-style: normal;
+  color: var(--subtab-text);
+}
+
+.pronounTable td:nth-child(4) {
+  font-size: 0.9rem;
+  color: var(--subtab-text);
+}
+
+.pronounFormsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pronounFormEntry {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pronounForm {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  color: var(--active-tab-border);
+}
+
+.pronounExample {
+  font-style: italic;
+  color: var(--subtab-text);
+}
+
+/* Removed Progress Bar Styles */
+/*
+.progressBarContainer { ... }
+.progressBar { ... }
+*/
