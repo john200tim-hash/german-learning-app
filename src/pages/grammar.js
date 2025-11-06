@@ -6,12 +6,12 @@ import SearchBar from '../components/layouts/SearchBar';
 
 import IndefiniteWords from '../components/grammar/IndefiniteWords';
 import Pronouns from '../components/grammar/Pronouns';
-import PassiveSubstitutes from '../components/grammar/PassiveSubstitutes';
+import PassivePractice from '../components/practice/PassivePractice'; // Changed to the practice component
 import Conjunctions from '../components/grammar/Conjunctions';
 const grammarTabs = {
     'indefinite-words': { label: 'Indefinite Words', component: IndefiniteWords },
     pronouns: { label: 'Pronouns', component: Pronouns },
-    'passive-substitutes': { label: 'Passive Substitutes', component: PassiveSubstitutes },
+    'passive-substitutes': { label: 'Passive Substitutes', component: PassivePractice }, // Using the interactive quiz directly
     'conjunctions': { label: 'Conjunctions', component: Conjunctions },
 };
 

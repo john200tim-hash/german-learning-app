@@ -26,11 +26,13 @@ export default function Layout({ children }) {
     return (
         <div className={`${styles.appWrapper} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>
             <Sidebar isOpen={isSidebarOpen} />
-            {isSidebarOpen && <div className={styles.sidebarOverlay} onClick={toggleSidebar}></div>}
 
-            <main className={styles.contentArea}>
-                {children}
-            </main>
+            <div className={styles.mainContainer}>
+                {isSidebarOpen && <div className={styles.sidebarOverlay} onClick={toggleSidebar}></div>}
+                <main className={styles.contentArea}>
+                    {children}
+                </main>
+            </div>
 
             <button className={styles.hamburgerButton} onClick={toggleSidebar} aria-label="Open menu">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="24" height="24">

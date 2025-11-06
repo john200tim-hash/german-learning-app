@@ -142,10 +142,6 @@
   transform: rotate(90deg);
 }
 
-.settingsOpen {
-  transform: rotate(90deg);
-}
-
 /* --- Settings Modal --- */
 .modalOverlay {
   position: fixed;
