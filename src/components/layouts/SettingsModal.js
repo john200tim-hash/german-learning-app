@@ -34,15 +34,17 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
         }
 
         try {
-            const res = await fetch('/api/contact', {
+            // Replace with your actual Formspree endpoint URL
+            const formspreeEndpoint = 'https://formspree.io/f/meopylpb';
+
+            const res = await fetch(formspreeEndpoint, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                 },
-                body: JSON.stringify({ senderEmail, message }),
+                body: new FormData(e.target), // Formspree can handle FormData directly
             });
 
-            const data = await res.json();
             if (res.ok) {
                 setContactStatus('success');
                 setSenderEmail('');
@@ -152,12 +154,12 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                         <div className={styles.contactSection}>
                             <form onSubmit={handleSubmitContact} className={styles.contactForm}>
                                 <div className={styles.formGroup}>
-                                    <label htmlFor="contact-email">Your Email</label>
-                                    <input type="email" id="contact-email" className={styles.formInput} value={senderEmail} onChange={(e) => setSenderEmail(e.target.value)} required />
+                                    <label htmlFor="contact-email">Your Reply-To Email</label>
+                                    <input type="email" id="contact-email" name="email" className={styles.formInput} value={senderEmail} onChange={(e) => setSenderEmail(e.target.value)} required />
                                 </div>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="contact-message">Message</label> 
-                                    <textarea id="contact-message" className={styles.formTextarea} value={message} onChange={(e) => setMessage(e.target.value)} rows="4" required ></textarea>
+                                    <textarea id="contact-message" name="message" className={styles.formTextarea} value={message} onChange={(e) => setMessage(e.target.value)} rows="4" required ></textarea>
                                 </div>
                                 <button type="submit" className={styles.formButton} disabled={contactStatus === 'sending'}>
                                     {contactStatus === 'sending' ? 'Sending...' : 'Send Message'}
