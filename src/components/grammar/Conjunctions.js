@@ -33,6 +33,9 @@ const conjunctionsData = [
       { word: 'seitdem', meaning: 'since', explanation: 'Indicates an action ongoing since a past event.', example: 'Seitdem er hier wohnt, ist er glücklicher.' },
       { word: 'damit', meaning: 'so that', explanation: 'Indicates the purpose of an action.', example: 'Ich lerne, damit ich die Prüfung bestehe.' },
       { word: 'bis', meaning: 'until', explanation: 'Indicates a time limit for an action.', example: 'Warte hier, bis ich zurückkomme.' },
+      { word: 'sobald', meaning: 'as soon as', explanation: 'Indicates an action that will happen immediately after another.', example: 'Ich rufe dich an, sobald ich ankomme.' },
+      { word: 'solange', meaning: 'as long as', explanation: 'Indicates a condition that persists for a duration.', example: 'Solange du hier bist, bin ich glücklich.' },
+      { word: 'falls', meaning: 'in case, if', explanation: 'Introduces a potential condition, similar to "wenn" but often implying less likelihood.', example: 'Falls du Zeit hast, können wir uns treffen.' },
     ]
   },
   {
@@ -43,7 +46,9 @@ const conjunctionsData = [
       { word: 'sowohl ... als auch', meaning: 'both ... and', explanation: 'Connects two parallel items.', example: 'Er mag sowohl Kaffee als auch Tee.' },
       { word: 'weder ... noch', meaning: 'neither ... nor', explanation: 'Negates two alternatives.', example: 'Er trinkt weder Kaffee noch Tee.' },
       { word: 'zwar ... aber', meaning: 'indeed ... but', explanation: 'Makes a concession followed by a contradiction.', example: 'Der Film ist zwar lang, aber sehr interessant.' },
-      { word: 'je ... desto', meaning: 'the ... the', explanation: 'Shows a proportional relationship.', example: 'Je mehr du lernst, desto besser wirst du.' },
+      { word: 'je ... desto', meaning: 'the ... the', explanation: 'Shows a proportional relationship. The "je" clause is subordinate.', example: 'Je mehr du lernst, desto besser wirst du.' },
+      { word: 'nicht nur ... sondern auch', meaning: 'not only ... but also', explanation: 'Emphasizes that two things are true.', example: 'Sie ist nicht nur intelligent, sondern auch sehr freundlich.' },
+      { word: 'einerseits ... andererseits', meaning: 'on the one hand ... on the other hand', explanation: 'Presents two contrasting points or perspectives.', example: 'Einerseits möchte ich reisen, andererseits möchte ich Geld sparen.' },
     ]
   }
 ];
