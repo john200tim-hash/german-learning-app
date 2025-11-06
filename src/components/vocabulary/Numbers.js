@@ -15,6 +15,16 @@ export default function Numbers({ searchTerm }) {
     { word: 'acht', meaning: 'eight', explanation: 'The number 8.', example: 'Die Spinne hat acht Beine. (The spider has eight legs.)' },
     { word: 'neun', meaning: 'nine', explanation: 'The number 9.', example: 'Es ist neun Uhr. (It is nine o\'clock.)' },
     { word: 'zehn', meaning: 'ten', explanation: 'The number 10.', example: 'Ich habe zehn Finger. (I have ten fingers.)' },
+    { word: 'elf', meaning: 'eleven', explanation: 'The number 11.', example: 'Es ist elf Uhr. (It is eleven o\'clock.)' },
+    { word: 'zwölf', meaning: 'twelve', explanation: 'The number 12.', example: 'Ein Jahr hat zwölf Monate. (A year has twelve months.)' },
+    { word: 'dreizehn', meaning: 'thirteen', explanation: 'The number 13.', example: 'Ich bin dreizehn Jahre alt. (I am thirteen years old.)' },
+    { word: 'vierzehn', meaning: 'fourteen', explanation: 'The number 14.', example: 'Sie hat vierzehn Bücher. (She has fourteen books.)' },
+    { word: 'fünfzehn', meaning: 'fifteen', explanation: 'The number 15.', example: 'Der Bus kommt in fünfzehn Minuten. (The bus comes in fifteen minutes.)' },
+    { word: 'sechzehn', meaning: 'sixteen', explanation: 'The number 16.', example: 'Er ist sechzehn Jahre alt. (He is sixteen years old.)' },
+    { word: 'siebzehn', meaning: 'seventeen', explanation: 'The number 17.', example: 'Siebzehn ist meine Glückszahl. (Seventeen is my lucky number.)' },
+    { word: 'achtzehn', meaning: 'eighteen', explanation: 'The number 18.', example: 'Ich bin achtzehn Jahre alt. (I am eighteen years old.)' },
+    { word: 'neunzehn', meaning: 'nineteen', explanation: 'The number 19.', example: 'Neunzehn Grad Celsius. (Nineteen degrees Celsius.)' },
+    { word: 'zwanzig', meaning: 'twenty', explanation: 'The number 20.', example: 'Ich habe zwanzig Euro. (I have twenty Euros.)' },
   ];
 
   const filteredData = numbersData.filter(item =>

@@ -22,8 +22,16 @@ export default function PronounCard({ item }) {
             {item.cases.map((c) => (
               <tr key={c.case}>
                 <td><strong>{c.case}</strong></td>
-                <td>{c.form}</td>
-                <td><em lang="de">{c.example}</em></td>
+                <td colSpan="2">
+                  <div className={styles.pronounFormsContainer}>
+                    {c.forms.map((f, i) => (
+                      <div key={i} className={styles.pronounFormEntry}>
+                        <span className={styles.pronounForm}>{f.form}</span>
+                        <span className={styles.pronounExample} lang="de">{f.example}</span>
+                      </div>
+                    ))}
+                  </div>
+                </td>
                 <td>{c.explanation}</td>
               </tr>
             ))}

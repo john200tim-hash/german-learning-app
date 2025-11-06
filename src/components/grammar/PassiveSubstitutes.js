@@ -1,29 +1,25 @@
 // src/components/grammar/PassiveSubstitutes.js
 
 import React from 'react';
-import styles from '../../styles/Layout.module.css'; // This path is correct
+import VocabCard from '../../components/lessons/VocabCard';
+import styles from '../../styles/Layout.module.css';
 
-export default function PassiveSubstitutes() {
+const passiveSubstitutesData = [
+    { word: 'sein + zu + Infinitiv', meaning: 'Necessity or Obligation (must be done)', explanation: 'This construction is used to express that something must be done.', example: 'Die Rechnung ist zu bezahlen. (The bill must be paid.)' },
+    { word: 'sich lassen + Infinitiv', meaning: 'Possibility (can be done)', explanation: 'This construction is used to express that something is possible to do.', example: 'Das Problem lässt sich lösen. (The problem can be solved.)' },
+    { word: 'Adjektive auf -bar / -lich', meaning: 'Feasibility or Quality (is -able/-ible)', explanation: 'Adjectives ending in -bar or -lich often describe what can be done to the noun.', example: 'Das Wasser ist trinkbar. (The water is drinkable.)' }
+];
+
+export default function PassiveSubstitutes({ searchTerm }) {
+    const filteredData = passiveSubstitutesData.filter(item =>
+        item.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.meaning.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
-        <div>
-            <div className={styles.contentCard}>
-                <h3 className={styles.vocabWord}>1. sein + zu + Infinitiv</h3>
-                <p className="mb-4">Expresses <strong>necessity or obligation</strong> (must be done).</p>
-                <p className={styles.vocabExample}>Die Rechnung <strong>ist zu bezahlen</strong>. (The bill must be paid.)</p>
-                <p className={styles.vocabExample}>Das Formular <strong>ist auszufüllen</strong>. (The form must be filled out.)</p>
-            </div>
-            <div className={styles.contentCard}>
-                <h3 className={styles.vocabWord}>2. sich lassen + Infinitiv</h3>
-                <p className="mb-4">Expresses <strong>possibility</strong> (can be done).</p>
-                <p className={styles.vocabExample}>Das Problem <strong>lässt sich lösen</strong>. (The problem can be solved.)</p>
-                <p className={styles.vocabExample}>Der Stoff <strong>lässt sich leicht waschen</strong>. (The fabric can be washed easily.)</p>
-            </div>
-            <div className={styles.contentCard}>
-                <h3 className={styles.vocabWord}>3. Adjektive auf -bar / -lich</h3>
-                <p className="mb-4">Expresses <strong>feasibility or quality</strong> (is -able/-ible).</p>
-                <p className={styles.vocabExample}>Das Wasser ist <strong>trinkbar</strong>. (The water is drinkable.)</p>
-                <p className={styles.vocabExample}>Seine Schrift ist kaum <strong>leserlich</strong>. (His handwriting is barely legible.)</p>
-            </div>
+        <div className={styles.contentCard}>
+            <h2>Passive Voice Substitutes (Passiversatzformen)</h2>
+            {filteredData.length > 0 ? filteredData.map((item, index) => <VocabCard key={index} item={item} />) : <p>No items found matching your search.</p>}
         </div>
     );
 }

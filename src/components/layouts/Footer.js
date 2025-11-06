@@ -4,16 +4,22 @@ import React from 'react';
 import styles from '../../styles/Layout.module.css';
 
 export default function Footer({ onContactClick, onSupportClick }) {
-  return (
-      <footer className={styles.footer}>
-      <p>© John@2025</p>
-      <div className={styles.footerLinks}>
-        <p>Have a suggestion or feedback? <button onClick={onContactClick} className={styles.footerLink}>Contact Us</button></p>
-        <p>
-          Need help or want to contribute? <button onClick={onSupportClick} className={styles.footerLink}>Get Support</button> or call <span className={styles.supportNumber}>+254740292388</span>
-        </p>
-      </div>
+    const currentYear = new Date().getFullYear();
 
-    </footer>
-  );
+    return (
+        <footer className={styles.footer}>
+            <p>
+                &copy; {currentYear} German Learning App. All Rights Reserved. | Support:
+                <span className={styles.supportNumber}>0740292388</span>
+            </p>
+            <div className={styles.footerLinks}>
+                <button onClick={onContactClick} className={styles.footerLink}>
+                    Contact Us
+                </button>
+                <button onClick={onSupportClick} className={styles.footerLink}>
+                    Support Us
+                </button>
+            </div>
+        </footer>
+    );
 }

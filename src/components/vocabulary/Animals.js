@@ -11,6 +11,10 @@ export default function Animals({ searchTerm }) {
     { word: 'der Vogel', meaning: 'the bird', explanation: 'A warm-blooded egg-laying vertebrate distinguished by the possession of feathers, wings, and a beak.', example: 'Der Vogel singt im Baum. (The bird is singing in the tree.)' },
     { word: 'der Fisch', meaning: 'the fish', explanation: 'A limbless cold-blooded vertebrate animal with gills and fins living wholly in water.', example: 'Der Fisch schwimmt im Wasser. (The fish swims in the water.)' },
     { word: 'die Maus', meaning: 'the mouse', explanation: 'A small rodent that typically has a pointed snout, relatively large ears and eyes, and a long tail.', example: 'Die Maus isst den Käse. (The mouse is eating the cheese.)' },
+    { word: 'der Elefant', meaning: 'the elephant', explanation: 'A very large plant-eating mammal with a trunk, tusks, and large ears.', example: 'Der Elefant ist grau und groß. (The elephant is gray and big.)' },
+    { word: 'der Löwe', meaning: 'the lion', explanation: 'A large carnivorous feline mammal with a shaggy mane.', example: 'Der Löwe ist der König der Tiere. (The lion is the king of animals.)' },
+    { word: 'der Tiger', meaning: 'the tiger', explanation: 'A large solitary cat with a yellow-brown coat striped with black.', example: 'Der Tiger jagt im Dschungel. (The tiger hunts in the jungle.)' },
+    { word: 'die Schlange', meaning: 'the snake', explanation: 'A legless reptile with a long, scaly body.', example: 'Die Schlange kriecht auf dem Boden. (The snake crawls on the ground.)' },
   ];
 
   const filteredData = animalsData.filter(item =>

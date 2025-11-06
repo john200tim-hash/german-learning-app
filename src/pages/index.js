@@ -37,6 +37,7 @@ export default function HomePage() {
               <li><Link href="/grammar?tab=indefinite-words" className={styles.topicLink}>Indefinite Words</Link></li>
               <li><Link href="/grammar?tab=pronouns" className={styles.topicLink}>Pronoun Declensions</Link></li>
               <li><Link href="/grammar?tab=passive-substitutes" className={styles.topicLink}>Passive Substitutes</Link></li>
+              <li><Link href="/grammar?tab=conjunctions" className={styles.topicLink}>Conjunctions</Link></li>
             </ul>
 
           </div>
@@ -62,7 +63,8 @@ export default function HomePage() {
           <div className={styles.moduleCard}>
             <h2>Practice Module</h2>
             <ul className={styles.topicList}>
-              <li><Link href="/grammar?tab=passive-substitutes" className={styles.topicLink}>Passive Substitutes Questions</Link></li>
+              <li><Link href="/practice?tab=indefinite-words-quiz" className={styles.topicLink}>Indefinite Words Quiz</Link></li>
+              <li><Link href="/practice?tab=passive-substitutes-quiz" className={styles.topicLink}>Passive Substitutes Quiz</Link></li>
             </ul>
           </div>
         </div>

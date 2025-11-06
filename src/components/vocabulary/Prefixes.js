@@ -10,6 +10,9 @@ export default function Prefixes({ searchTerm }) {
     { word: 'mitkommen', meaning: 'to come with/along', explanation: 'The prefix "mit-" is separable.', example: 'Kommst du mit ins Kino? (Are you coming along to the cinema?)' },
     { word: 'vorstellen', meaning: 'to introduce, to imagine', explanation: 'The prefix "vor-" is separable.', example: 'Ich stelle mich vor. (I introduce myself.)' },
     { word: 'zurückgeben', meaning: 'to give back', explanation: 'The prefix "zurück-" is separable.', example: 'Gib mir bitte mein Buch zurück. (Please give me my book back.)' },
+    { word: 'aufstehen', meaning: 'to get up, to stand up', explanation: 'The prefix "auf-" is separable.', example: 'Ich stehe jeden Morgen um sechs Uhr auf. (I get up at six o\'clock every morning.)' },
+    { word: 'fernsehen', meaning: 'to watch television', explanation: 'The prefix "fern-" is separable.', example: 'Wir sehen abends oft fern. (We often watch TV in the evening.)' },
+    { word: 'aussehen', meaning: 'to look, to appear', explanation: 'The prefix "aus-" is separable.', example: 'Du siehst heute gut aus. (You look good today.)' },
   ];
 
   const filteredData = prefixesData.filter(item =>

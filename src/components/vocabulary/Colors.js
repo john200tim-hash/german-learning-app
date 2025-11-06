@@ -12,6 +12,10 @@ export default function Colors({ searchTerm }) {
     { word: 'schwarz', meaning: 'black', explanation: 'The darkest color, the result of the absence of or complete absorption of light.', example: 'Die Nacht ist schwarz. (The night is black.)' },
     { word: 'weiß', meaning: 'white', explanation: 'The color of milk or fresh snow.', example: 'Der Schnee ist weiß. (The snow is white.)' },
     { word: 'grau', meaning: 'gray', explanation: 'A color intermediate between black and white.', example: 'Der Elefant ist grau. (The elephant is gray.)' },
+    { word: 'rosa', meaning: 'pink', explanation: 'A pale red color.', example: 'Das Schwein ist rosa. (The pig is pink.)' },
+    { word: 'lila', meaning: 'purple', explanation: 'A color intermediate between blue and red.', example: 'Die Blume ist lila. (The flower is purple.)' },
+    { word: 'braun', meaning: 'brown', explanation: 'A color like that of chocolate or soil.', example: 'Der Bär ist braun. (The bear is brown.)' },
+    { word: 'orange', meaning: 'orange', explanation: 'A color intermediate between red and yellow.', example: 'Die Orange ist orange. (The orange is orange.)' },
   ];
 
   const filteredData = colorsData.filter(item =>

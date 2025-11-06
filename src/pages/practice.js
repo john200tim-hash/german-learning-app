@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/Layout.module.css';
 
-// Import practice components
-import PassivePractice from '../components/practice/PassivePractice'; // Corrected path
+import IndefiniteWordsQuiz from '../components/practice/IndefiniteWordsQuiz';
+import PassiveSubstitutesQuiz from '../components/practice/PassiveSubstitutesQuiz';
 
 const practiceTabs = {
-    'passive-practice': { label: 'Passive Substitutes', component: PassivePractice },
-    // Future practice modules will be added here
+    'indefinite-words-quiz': { label: 'Indefinite Words Quiz', component: IndefiniteWordsQuiz },
+    'passive-substitutes-quiz': { label: 'Passive Substitutes Quiz', component: PassiveSubstitutesQuiz },
 };
 
 export default function PracticePage() {
@@ -17,31 +17,35 @@ export default function PracticePage() {
     const [activeTab, setActiveTab] = useState(Object.keys(practiceTabs)[0]);
 
     useEffect(() => {
-        if (router.isReady && router.query.tab) {
-            const tabFromQuery = router.query.tab;
-            if (practiceTabs[tabFromQuery]) {
-                setActiveTab(tabFromQuery);
-            }
+        const tabFromQuery = router.query.tab;
+        if (router.isReady && tabFromQuery && practiceTabs[tabFromQuery]) {
+            setActiveTab(tabFromQuery);
         }
     }, [router.isReady, router.query.tab]);
 
     const ActiveComponent = practiceTabs[activeTab]?.component;
 
+    const handleTabClick = (tabKey) => {
+        setActiveTab(tabKey);
+        router.push({
+            pathname: '/practice',
+            query: { tab: tabKey },
+        }, undefined, { shallow: true });
+    };
+
     return (
         <div>
-            <h1>Practice Exercises</h1>
+            <h1>Practice</h1>
             <p>Test your knowledge with interactive quizzes.</p>
 
-            <div className={styles.subTabs}>
-                {Object.keys(practiceTabs).map((tabKey) => (
-                    <button
-                        key={tabKey}
-                        className={`${styles.subTabBtn} ${activeTab === tabKey ? styles.activeSubTab : ''}`}
-                        onClick={() => setActiveTab(tabKey)}
-                    >
-                        {practiceTabs[tabKey].label}
-                    </button>
-                ))}
+            <div className={styles.subTabsWrapper}>
+                <div className={styles.subTabs}>
+                    {Object.keys(practiceTabs).map((tabKey) => (
+                        <button key={tabKey} className={`${styles.subTabBtn} ${activeTab === tabKey ? styles.activeSubTab : ''}`} onClick={() => handleTabClick(tabKey)}>
+                            {practiceTabs[tabKey].label}
+                        </button>
+                    ))}
+                </div>
             </div>
 
             <div>

@@ -1,88 +1,56 @@
 // src/components/layouts/Layout.js
 
-import React, { useState, useEffect, useRef } from 'react'; // Added useRef
-import Footer from './Footer';
+import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import SettingsModal from './SettingsModal';
+import Footer from './Footer'; // Import the Footer component
 import styles from '../../styles/Layout.module.css';
 
-/**
- * Reusable shell for all pages. [1]
- */
 export default function Layout({ children }) {
-  const [isSettingsOpen, setSettingsOpen] = useState(false);
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const [initialModalTab, setInitialModalTab] = useState('settings');
-  const [isMobile, setIsMobile] = useState(false); // New state to track mobile view
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const [isSettingsOpen, setSettingsOpen] = useState(false);
+    const [modalInitialTab, setModalInitialTab] = useState('settings');
 
-  // Ref for the main content area to detect clicks outside sidebar
-  const mainContentRef = useRef(null);
+    const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
-  const openContactModal = () => {
-    setInitialModalTab('contact');
-    setSettingsOpen(true);
-  };
-
-  const openSupportModal = () => {
-    setInitialModalTab('support');
-    setSettingsOpen(true);
-  };
-
-  // Detect mobile view
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024); // Assuming 1024px as desktop breakpoint
-      if (window.innerWidth >= 1024) {
-        setSidebarOpen(true); // Always open sidebar on desktop
-      }
+    const openContactModal = () => {
+        setModalInitialTab('contact');
+        setSettingsOpen(true);
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen);
-  };
-
-  // Close sidebar if clicked outside on mobile
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      // Only close if it's mobile and sidebar is open, and the click is outside the sidebar and hamburger
-      if (isMobile && isSidebarOpen && !e.target.closest(`.${styles.sidebarContainer}`) && !e.target.closest(`.${styles.hamburgerButton}`)) {
-        setSidebarOpen(false);
-      }
+    const openSupportModal = () => {
+        setModalInitialTab('support');
+        setSettingsOpen(true);
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isMobile, isSidebarOpen]);
 
-  return (
-    <div className={`${styles.appWrapper} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>      
-      {/* Hamburger Button - only visible on mobile */}
-      {isMobile && (
-        <button className={styles.hamburgerButton} onClick={toggleSidebar} aria-label="Toggle Sidebar">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-      )}
+    return (
+        <div className={`${styles.appWrapper} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>
+            <Sidebar isOpen={isSidebarOpen} />
+            {isSidebarOpen && <div className={styles.sidebarOverlay} onClick={toggleSidebar}></div>}
 
-      {/* Settings Button - always visible, fixed top-right */}
-      <button className={styles.settingsButton} onClick={() => setSettingsOpen(true)} aria-label="Open settings">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-      </button>
+            <main className={styles.contentArea}>
+                {children}
+            </main>
 
-      {/* Overlay for mobile sidebar */}
-      {isMobile && isSidebarOpen && (
-        <div className={styles.sidebarOverlay} onClick={toggleSidebar}></div>
-      )}
+            <button className={styles.hamburgerButton} onClick={toggleSidebar} aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="24" height="24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
 
-      <SettingsModal isOpen={isSettingsOpen} onClose={() => setSettingsOpen(false)} initialTab={initialModalTab} />
+            <button className={`${styles.settingsButton} ${isSettingsOpen ? styles.settingsOpen : ''}`} onClick={() => setSettingsOpen(true)} aria-label="Open settings">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+            </button>
 
-      <div className={styles.mainContainer}>
-        <Sidebar isOpen={isSidebarOpen} />
-        <main ref={mainContentRef} className={styles.contentArea}>{children}</main>
-      </div>
-      <Footer onContactClick={openContactModal} onSupportClick={openSupportModal} />
-    </div>
-  );
+            <SettingsModal
+                isOpen={isSettingsOpen}
+                onClose={() => { setSettingsOpen(false); setModalInitialTab('settings'); }} // Reset tab on close
+                initialTab={modalInitialTab}
+            />
+            <Footer onContactClick={openContactModal} onSupportClick={openSupportModal} />
+        </div>
+    );
 }

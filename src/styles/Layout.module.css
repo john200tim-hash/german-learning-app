@@ -138,6 +138,10 @@
   transform: rotate(45deg);
 }
 
+.settingsOpen {
+  transform: rotate(90deg);
+}
+
 /* --- Settings Modal --- */
 .modalOverlay {
   position: fixed;
@@ -309,6 +313,25 @@ input:checked + .slider:before {
   border-bottom-color: var(--active-tab-bg);
 }
 
+/* --- Search Bar --- */
+.searchBarContainer {
+  margin-bottom: 1.5rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.searchInput::placeholder {
+  color: var(--subtab-text);
+}
+
 /* --- Contact Form Styles --- */
 .contactSection {
   padding-top: 1rem;
@@ -416,8 +439,9 @@ input:checked + .slider:before {
 .footerLinks {
   margin-top: 0.5rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .footerLink {
@@ -505,3 +529,164 @@ input:checked + .slider:before {
   font-size: 0.9rem;
   color: var(--text-color);
 }
+
+/* --- Quiz Styles --- */
+.quizContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.quizQuestion {
+  font-size: 1.2rem;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+.quizInput {
+  padding: 0.75rem;
+  border: 2px solid var(--card-border);
+  border-radius: 0.5rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  text-align: center;
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 300px;
+  transition: border-color 0.3s;
+}
+
+.feedbackCorrect {
+  border-color: #22c55e; /* green-500 */
+}
+
+.feedbackIncorrect {
+  border-color: #ef4444; /* red-500 */
+}
+
+.quizScore {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.quizInstruction {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--subtab-text);
+}
+
+.feedbackCorrectText {
+  color: #22c55e; /* green-500 */
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.feedbackIncorrectText {
+  color: #ef4444; /* red-500 */
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+/* --- Quiz Styles Enhancements --- */
+.quizQuestionNumber {
+  font-size: 0.9rem;
+  color: var(--subtab-text);
+  margin-bottom: 0.5rem;
+}
+
+.quizQuestionText {
+  font-size: 1.4rem; /* Slightly larger for prominence */
+  font-family: 'Georgia', serif;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--heading-color);
+  line-height: 1.5;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid var(--active-tab-bg);
+  background-color: var(--bg-color);
+  border-radius: 0 8px 8px 0;
+}
+
+/* --- Pronoun Table Styles --- */
+.tableContainer {
+  overflow-x: auto; /* Allows table to be scrolled on small screens */
+  margin-top: 1rem;
+}
+
+.pronounTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.pronounTable th,
+.pronounTable td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.pronounTable th {
+  background-color: var(--bg-color);
+  color: var(--heading-color);
+  font-weight: 600;
+  border-top: 1px solid var(--card-border);
+}
+
+.pronounTable tbody tr:nth-of-type(even) {
+  background-color: var(--bg-color);
+}
+
+.pronounTable td:first-child {
+  color: var(--active-tab-bg);
+  font-weight: bold;
+}
+
+.pronounTable td:nth-child(2) {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.pronounTable td:nth-child(3) em {
+  font-style: normal;
+  color: var(--subtab-text);
+}
+
+.pronounTable td:nth-child(4) {
+  font-size: 0.9rem;
+  color: var(--subtab-text);
+}
+
+.pronounFormsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pronounFormEntry {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pronounForm {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  color: var(--active-tab-border);
+}
+
+.pronounExample {
+  font-style: italic;
+  color: var(--subtab-text);
+}
+
+/* Removed Progress Bar Styles */
+/*
+.progressBarContainer { ... }
+.progressBar { ... }
+*/

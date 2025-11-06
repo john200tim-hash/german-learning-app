@@ -11,6 +11,13 @@ export default function ComplexVerbs({ searchTerm }) {
     { word: 'beabsichtigen', meaning: 'to intend, to plan', explanation: 'To have something as a plan or purpose.', example: 'Wir beabsichtigen, nächste Woche zu reisen. (We intend to travel next week.)' },
     { word: 'vermitteln', meaning: 'to convey, to mediate', explanation: 'To communicate information or to act as a go-between.', example: 'Der Lehrer vermittelt Wissen. (The teacher conveys knowledge.)' },
     { word: 'unterstützen', meaning: 'to support, to assist', explanation: 'To give help or encouragement to someone or something.', example: 'Ich werde dich bei deinem Projekt unterstützen. (I will support you with your project.)' },
+    { word: 'sich bemühen', meaning: 'to make an effort, to strive', explanation: 'To try hard to achieve something.', example: 'Er bemüht sich, Deutsch zu lernen. (He makes an effort to learn German.)' },
+    { word: 'durchführen', meaning: 'to carry out, to execute', explanation: 'To perform or complete a task or plan.', example: 'Wir müssen den Plan durchführen. (We must carry out the plan.)' },
+    { word: 'veranlassen', meaning: 'to arrange, to cause', explanation: 'To make something happen or to initiate an action.', example: 'Ich werde alles Notwendige veranlassen. (I will arrange everything necessary.)' },
+    { word: 'wahrnehmen', meaning: 'to perceive, to notice', explanation: 'To become aware or conscious of something.', example: 'Sie nimmt die Details genau wahr. (She perceives the details precisely.)' },
+    { word: 'berücksichtigen', meaning: 'to consider, to take into account', explanation: 'To think about something carefully when making a decision.', example: 'Wir müssen alle Faktoren berücksichtigen. (We must consider all factors.)' },
+    { word: 'ermöglichen', meaning: 'to enable, to make possible', explanation: 'To provide with the means or opportunity.', example: 'Die Technologie ermöglicht neue Kommunikationswege. (Technology enables new ways of communication.)' },
+    { word: 'sich beziehen auf', meaning: 'to refer to', explanation: 'To be connected with or to mention something.', example: 'Ich beziehe mich auf Ihren Brief vom 10. Mai. (I am referring to your letter of May 10th.)' },
   ];
 
   const filteredData = verbsData.filter(item =>

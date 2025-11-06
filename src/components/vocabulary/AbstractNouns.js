@@ -11,6 +11,13 @@ export default function AbstractNouns({ searchTerm }) {
     { word: 'die Verantwortung', meaning: 'the responsibility', explanation: 'The state or fact of being accountable or to blame for something.', example: 'Jeder trägt Verantwortung für seine Taten. (Everyone bears responsibility for their actions.)' },
     { word: 'die Gelegenheit', meaning: 'the opportunity', explanation: 'A set of circumstances that makes it possible to do something.', example: 'Nutze die Gelegenheit! (Seize the opportunity!)' },
     { word: 'die Entwicklung', meaning: 'the development', explanation: 'The process of developing or being developed.', example: 'Die technologische Entwicklung ist rasant. (Technological development is rapid.)' },
+    { word: 'die Freiheit', meaning: 'the freedom', explanation: 'The power or right to act, speak, or think as one wants.', example: 'Freiheit ist ein hohes Gut. (Freedom is a great asset.)' },
+    { word: 'die Gerechtigkeit', meaning: 'the justice', explanation: 'Just behavior or treatment.', example: 'Wir kämpfen für Gerechtigkeit. (We fight for justice.)' },
+    { word: 'die Hoffnung', meaning: 'the hope', explanation: 'A feeling of expectation and desire for a certain thing to happen.', example: 'Die Hoffnung stirbt zuletzt. (Hope dies last.)' },
+    { word: 'die Geduld', meaning: 'the patience', explanation: 'The capacity to accept or tolerate delay, trouble, or suffering without getting annoyed or anxious.', example: 'Habe Geduld! (Have patience!)' },
+    { word: 'die Beziehung', meaning: 'the relationship', explanation: 'The way in which two or more people or things are connected.', example: 'Sie haben eine gute Beziehung. (They have a good relationship.)' },
+    { word: 'die Gesellschaft', meaning: 'the society', explanation: 'The aggregate of people living together in a more or less ordered community.', example: 'Jeder ist ein Teil der Gesellschaft. (Everyone is a part of society.)' },
+    { word: 'der Mut', meaning: 'the courage', explanation: 'The ability to do something that frightens one.', example: 'Er hatte den Mut, die Wahrheit zu sagen. (He had the courage to tell the truth.)' },
   ];
 
   const filteredData = nounsData.filter(item =>

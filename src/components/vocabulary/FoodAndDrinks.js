@@ -11,6 +11,10 @@ export default function FoodAndDrinks({ searchTerm }) {
     { word: 'die Milch', meaning: 'the milk', explanation: 'An opaque white fluid rich in fat and protein, secreted by female mammals.', example: 'Kinder sollten viel Milch trinken. (Children should drink a lot of milk.)' },
     { word: 'das Fleisch', meaning: 'the meat', explanation: 'The flesh of an animal as food.', example: 'Ich esse nicht viel Fleisch. (I don\'t eat much meat.)' },
     { word: 'der Kaffee', meaning: 'the coffee', explanation: 'A hot drink made from the roasted and ground seeds of a tropical shrub.', example: 'Morgens trinke ich immer einen Kaffee. (In the morning, I always drink a coffee.)' },
+    { word: 'der Tee', meaning: 'the tea', explanation: 'A hot drink made by infusing dried leaves in boiling water.', example: 'Möchtest du Tee oder Kaffee? (Would you like tea or coffee?)' },
+    { word: 'das Bier', meaning: 'the beer', explanation: 'An alcoholic drink made from yeast-fermented malt flavored with hops.', example: 'Ein kühles Bier, bitte. (A cold beer, please.)' },
+    { word: 'der Wein', meaning: 'the wine', explanation: 'An alcoholic drink made from fermented grape juice.', example: 'Rotwein passt gut zu Käse. (Red wine goes well with cheese.)' },
+    { word: 'das Gemüse', meaning: 'the vegetables', explanation: 'Plants or parts of plants used as food.', example: 'Iss mehr Gemüse! (Eat more vegetables!)' },
   ];
 
   const filteredData = foodData.filter(item =>
