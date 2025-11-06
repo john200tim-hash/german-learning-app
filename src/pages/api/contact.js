@@ -1,6 +1,6 @@
 // src/pages/api/contact.js
 
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 
 /**
  * API Route to handle contact form submissions.
@@ -13,24 +13,21 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Email and message are required.' });
     }
 
-    // Configure the email transporter using your Gmail account
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_SERVER_USER,
-        pass: process.env.EMAIL_SERVER_PASSWORD,
-      },
-    });
+    // Set SendGrid API Key
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     try {
       // Send the email
-      await transporter.sendMail({
-        from: `"${senderEmail}" <${process.env.EMAIL_SERVER_USER}>`, // Use your server email as the sender for authentication
+      const msg = {
+        to: 'john200tim@gmail.com', // The destination email address
+        from: process.env.EMAIL_SERVER_USER, // Your verified SendGrid sender email (e.g., john200tim@gmail.com)
         to: 'john200tim@gmail.com', // The destination email address
         subject: `Message from ${senderEmail} via German Learning App`,
-        text: message,
-        replyTo: senderEmail, // Set the user's email as the reply-to address
-      });
+        text: `From: ${senderEmail}\n\n${message}`,
+        html: `<strong>From:</strong> ${senderEmail}<br><br>${message.replace(/\n/g, '<br>')}`,
+        replyTo: senderEmail,
+      };
+      await sgMail.send(msg);
 
       res.status(200).json({ success: true, message: 'Message sent successfully!' });
     } catch (error) {
