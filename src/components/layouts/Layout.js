@@ -1,6 +1,6 @@
 // src/components/layouts/Layout.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import SettingsModal from './SettingsModal';
 import Footer from './Footer'; // Import the Footer component
@@ -10,6 +10,21 @@ export default function Layout({ children }) {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [isSettingsOpen, setSettingsOpen] = useState(false);
     const [modalInitialTab, setModalInitialTab] = useState('settings');
+
+    useEffect(() => {
+        // Apply font size from localStorage on initial load
+        const savedFontSize = localStorage.getItem('fontSize') || 'medium';
+        document.documentElement.className = `font-size-${savedFontSize}`;
+
+        // Optional: Listen for storage changes to update font size across tabs
+        const handleStorageChange = () => {
+            const newSize = localStorage.getItem('fontSize') || 'medium';
+            document.documentElement.className = `font-size-${newSize}`;
+        };
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => window.removeEventListener('storage', handleStorageChange);
+    }, []);
 
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 

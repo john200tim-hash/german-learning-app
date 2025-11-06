@@ -624,15 +624,13 @@ input:checked + .slider:before {
 
 .pronounTable th,
 .pronounTable td {
-  padding: 0.75rem 1rem;
-  text-align: left;
+  padding: 5rem nt;
   border-bottom: 1px solid var(--card-border);
 }
 
 .pronounTable th {
   background-color: var(--bg-color);
-  color: var(--heading-color);
-  font-weight: 600;
+  color: var(--subtab-text)
   border-top: 1px solid var(--card-border);
 }
 
@@ -642,6 +640,7 @@ input:checked + .slider:before {
 
 .pronounTable td:first-child {
   color: var(--active-tab-bg);
+  font-size: 1.05rem; /* Make the 'Case' text slightly larger */
   font-weight: bold;
 }
 
