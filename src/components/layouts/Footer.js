@@ -5,19 +5,15 @@ import styles from '../../styles/Layout.module.css';
 
 export default function Footer({ onContactClick }) {
   return (
-    <footer className={styles.footer}>
+      <footer className={styles.footer}>
       <p>© John@2025</p>
-      <p>
-        Have a suggestion?{' '}
-        <button onClick={onContactClick} className={styles.footerLink}>Contact us</button>
-      </p>
-      <div className={styles.supportInfo}>
-        Support us:
-        <span className={styles.supportNumber}>0740297388
-          <span className={styles.tooltip}>
-            Why Support?<br />
-            This project is a labor of love, built in my spare time. Your support helps keep the servers running and enables future development.
-          </span>
+      <div className={styles.footerSupport}>
+        <button onClick={onContactClick} className={styles.footerLink}>
+          Support us
+        </button>
+        <span className={styles.supportNumber}>
+          +254740292388
+
           <span className={styles.questionMark}>
               ?
           </span>
