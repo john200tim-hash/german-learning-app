@@ -50,14 +50,25 @@ body {
 body.text-sm {
     font-size: 0.9rem;
 }
-body.text-base {
+body.text-base { /* Default size */
     font-size: 1rem;
 }
 body.text-lg {
     font-size: 1.1rem;
 }
+body.text-xl {
+    font-size: 1.25rem;
+}
+body.text-xxl {
+    font-size: 1.5rem;
+}
 
 html, body {
+    /* Ensure these are not duplicated if they exist elsewhere */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
     height: 100%;
     margin: 0;
     padding: 0;
