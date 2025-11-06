@@ -259,9 +259,6 @@
     visibility: hidden;
     width: 200px;
     background-color: var(--card-bg);
-    visibility: visible;
-    opacity: 1;
-}
 
 .questionMark {
     display: inline-flex;
