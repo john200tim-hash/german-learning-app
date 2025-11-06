@@ -1,6 +1,6 @@
 // This file seems to be a partial snippet. Assuming the full component structure.
 
-import React, { useState, useEffect, useCallback } from 'react'; // Added useCallback
+import React, { useState, useEffect, useCallback } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { useTheme } from '../../context/ThemeContext';
 import styles from '../../styles/Layout.module.css';
@@ -16,25 +16,26 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
         if (isOpen) setActiveTab(initialTab);
     }, [initialTab, isOpen]);
 
-    // Formspree hook, using your unique endpoint ID.
-    const [state, handleSubmit, resetForm] = useForm("meopylpb"); // Added resetForm
-
-    if (!isOpen) {
-        return null;
-    }
+    // Formspree hook for the contact form
+    const [state, handleSubmit, resetForm] = useForm("meopylpb");
 
     // Function to handle returning to settings after successful submission
     const handleReturnToSettings = useCallback(() => {
         resetForm(); // Reset the form state
         setActiveTab('settings'); // Switch back to settings tab
     }, [resetForm]);
-
+    
     // Effect to reset form state when modal closes or tab changes from contact
     useEffect(() => {
         if (!isOpen || activeTab !== 'contact') {
             resetForm();
         }
     }, [isOpen, activeTab, resetForm]);
+
+    // All hooks are now above this line. It is safe to return early.
+    if (!isOpen) {
+        return null;
+    }
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
@@ -179,6 +180,7 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                             <h4>Why Support?</h4>
                             <p>This project is a labor of love, built and maintained in my spare time.</p>
                             <p>Your support helps cover server costs, allows for the addition of new features, and keeps the learning content free and accessible for everyone. Thank you for being a part of this journey!</p>
+                            <p>For direct support, you can call: <span className={styles.supportNumber}>0740292388</span></p>
                         </div>
                     </div>
                 )}
