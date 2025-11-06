@@ -1,55 +1,37 @@
-// This file seems to be a partial snippet. Assuming the full component structure.
+// src/components/layouts/SettingsModal.js
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { useForm, ValidationError } from '@formspree/react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import styles from '../../styles/Layout.module.css';
 
-export default function SettingsModal({ isOpen, onClose, initialTab = 'settings' }) {
-    const { theme, handleThemeChange, textSize, setTextSize, isColorBlend, setColorBlend, colorMode, handleColorModeChange } = useTheme();
+export default function SettingsModal({ isOpen, onClose, initialTab }) {
+    const {
+        theme, setTheme,
+        textSize, setTextSize,
+        colorMode, setColorMode,
+        isColorBlend, setColorBlend
+    } = useTheme();
 
-    // --- All hooks must be called at the top, unconditionally ---
+    const [activeTab, setActiveTab] = useState(initialTab || 'settings');
 
-    // Formspree hook for the contact form
-    const [state, handleSubmit, resetForm] = useForm("meopylpb");
-
-    // State for tabs
-    const [activeTab, setActiveTab] = useState(initialTab);
-
-    // Function to handle returning to settings after successful submission
-    const handleReturnToSettings = useCallback(() => {
-        resetForm(); // Reset the form state
-        setActiveTab('settings'); // Switch back to settings tab
-    }, [resetForm]);
-
-    // Update the active tab if the initialTab prop changes while the modal is open
     useEffect(() => {
-        if (isOpen) setActiveTab(initialTab);
-    }, [initialTab, isOpen]);
+        setActiveTab(initialTab);
+    }, [initialTab]);
 
-    // Effect to reset form state when modal closes or tab changes from contact
-    useEffect(() => {
-        if (!isOpen || activeTab !== 'contact') {
-            resetForm();
-        }
-    }, [isOpen, activeTab, resetForm]);
+    const handleThemeChange = (newTheme) => {
+        setTheme(newTheme);
+    };
 
-    // --- End of hooks section ---
-
-    // Now it is safe to return early if the modal is not open.
-    if (!isOpen) {
-        return null;
-    }
+    if (!isOpen) return null;
 
     return (
         <div className={styles.modalOverlay} onClick={onClose}>
             <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.modalHeader}>
-                    <h3>Settings</h3>
+                    <h3>{activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h3>
                     <button onClick={onClose} className={styles.closeButton} aria-label="Close settings">&times;</button>
                 </div>
 
-                {/* Tab Navigation */}
                 <div className={styles.subTabs}>
                     <button
                         className={`${styles.subTabBtn} ${activeTab === 'settings' ? styles.activeSubTab : ''}`}
@@ -71,11 +53,9 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                         <div className={styles.settingRow}>
                             <label id="text-size-label">Text Size</label>
                             <div role="group" aria-labelledby="text-size-label" className={styles.segmentedControl}>
-                                <button onClick={() => setTextSize('sm')} className={textSize === 'sm' ? styles.activeSegment : ''}>S</button>
-                                <button onClick={() => setTextSize('base')} className={textSize === 'base' ? styles.activeSegment : ''}>M</button>
-                                <button onClick={() => setTextSize('lg')} className={textSize === 'lg' ? styles.activeSegment : ''}>L</button>
-                                <button onClick={() => setTextSize('xl')} className={textSize === 'xl' ? styles.activeSegment : ''}>XL</button>
-                                <button onClick={() => setTextSize('xxl')} className={textSize === 'xxl' ? styles.activeSegment : ''}>XXL</button>
+                                <button onClick={() => setTextSize('small')} className={textSize === 'small' ? styles.activeSegment : ''}>S</button>
+                                <button onClick={() => setTextSize('medium')} className={textSize === 'medium' ? styles.activeSegment : ''}>M</button>
+                                <button onClick={() => setTextSize('large')} className={textSize === 'large' ? styles.activeSegment : ''}>L</button>
                             </div>
                         </div>
 
@@ -83,52 +63,32 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                         <div className={styles.settingRow}>
                             <label id="theme-label">Theme</label>
                             <div role="group" aria-labelledby="theme-label" className={styles.segmentedControl}>
-                                <button
-                                    onClick={() => handleThemeChange('light')}
-                                    className={theme === 'light' ? styles.activeSegment : ''}
-                                >Light</button>
-                                <button
-                                    onClick={() => handleThemeChange('dark')}
-                                    className={theme === 'dark' ? styles.activeSegment : ''}
-                                >Dark</button>
-                                <button
-                                    onClick={() => handleThemeChange('high-contrast')}
-                                    className={theme === 'high-contrast' ? styles.activeSegment : ''}
-                                >Contrast</button>
+                                <button onClick={() => handleThemeChange('light')} className={theme === 'light' ? styles.activeSegment : ''}>Light</button>
+                                <button onClick={() => handleThemeChange('dark')} className={theme === 'dark' ? styles.activeSegment : ''}>Dark</button>
+                                <button onClick={() => handleThemeChange('high-contrast')} className={theme === 'high-contrast' ? styles.activeSegment : ''}>Contrast</button>
                             </div>
                         </div>
 
-                        {/* Color Mode Setting */}
+                        {/* Color Mode Selection */}
                         <div className={styles.settingRow}>
-                            <label id="color-mode-label">Color Palette</label>
+                            <label id="color-mode-label">Color Mode</label>
                             <div role="group" aria-labelledby="color-mode-label" className={styles.segmentedControl}>
-                                <button
-                                    onClick={() => handleColorModeChange('A')}
-                                    className={colorMode === 'A' ? styles.activeSegment : ''}
-                                >A</button>
-                                <button
-                                    onClick={() => handleColorModeChange('B')}
-                                    className={colorMode === 'B' ? styles.activeSegment : ''}
-                                >B</button>
-                                <button
-                                    onClick={() => handleColorModeChange('C')}
-                                    className={colorMode === 'C' ? styles.activeSegment : ''}
-                                >C</button><button
-                                    onClick={() => handleColorModeChange('D')}
-                                    className={colorMode === 'D' ? styles.activeSegment : ''}
-                                >D</button>
+                                <button onClick={() => setColorMode('a')} className={colorMode === 'a' ? styles.activeSegment : ''}>A</button>
+                                <button onClick={() => setColorMode('b')} className={colorMode === 'b' ? styles.activeSegment : ''}>B</button>
+                                <button onClick={() => setColorMode('c')} className={colorMode === 'c' ? styles.activeSegment : ''}>C</button>
+                                <button onClick={() => setColorMode('d')} className={colorMode === 'd' ? styles.activeSegment : ''}>D</button>
                             </div>
                         </div>
 
-                        {/* Color Blending Toggle */}
+                        {/* Color Blend Toggle */}
                         <div className={styles.settingRow}>
-                            <label htmlFor="color-blend-toggle">Vocabulary Color Blending</label>
+                            <label htmlFor="color-blend-toggle">Color Blend</label>
                             <label className={styles.toggleSwitch}>
                                 <input
                                     type="checkbox"
                                     id="color-blend-toggle"
                                     checked={isColorBlend}
-                                    onChange={() => setColorBlend(!isColorBlend)}
+                                    onChange={(e) => setColorBlend(e.target.checked)}
                                 />
                                 <span className={styles.slider}></span>
                             </label>
@@ -137,55 +97,38 @@ export default function SettingsModal({ isOpen, onClose, initialTab = 'settings'
                 )}
 
                 {activeTab === 'contact' && (
-                    <div className={styles.modalBody}>
-                        {/* Contact Section */}
-                        <div className={styles.contactSection}>
-                            <form onSubmit={handleSubmit} className={styles.contactForm}>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="contact-email">Your Reply-To Email</label>
-                                    <input type="email" id="contact-email" name="email" className={styles.formInput} required />
-                                    <ValidationError 
-                                        prefix="Email" 
-                                        field="email"
-                                        errors={state.errors}
-                                        className={styles.contactError}
-                                    />
-                                </div>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="contact-message">Message</label> 
-                                    <textarea id="contact-message" name="message" className={styles.formTextarea} rows="4" required ></textarea>
-                                    <ValidationError 
-                                        prefix="Message" 
-                                        field="message"
-                                        errors={state.errors}
-                                        className={styles.contactError}
-                                    />
-                                </div>
-                                <button type="submit" className={styles.formButton} disabled={state.submitting}>
-                                    Send Message
-                                </button>
-                                {state.succeeded && (
-                                    <p className={styles.contactSuccess}>Message sent! Thank you.</p>
-                                )}
-                                {state.errors && state.errors.length > 0 && (
-                                    <p className={styles.contactError}>Failed to send message. Please check your input.</p>
-                                )}
-                            </form>
-                            {state.succeeded && (
-                                <button onClick={handleReturnToSettings} className={styles.formButton}>Back to Settings</button>
-                            )}
-                        </div>
+                    <div className={styles.contactSection}>
+                        <h4>Get in Touch</h4>
+                        <form className={styles.contactForm}>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="name">Name</label>
+                                <input type="text" id="name" className={styles.formInput} />
+                            </div>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="email">Email</label>
+                                <input type="email" id="email" className={styles.formInput} />
+                            </div>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="message">Message</label>
+                                <textarea id="message" rows="4" className={styles.formTextarea}></textarea>
+                            </div>
+                            <button type="submit" className={styles.formButton}>Send Message</button>
+                        </form>
                     </div>
                 )}
 
                 {activeTab === 'support' && (
-                    <div className={styles.modalBody}>
-                        <div className={styles.supportSection}>
-                            <h4>Why Support?</h4>
-                            <p>This project is a labor of love, built and maintained in my spare time.</p>
-                            <p>Your support helps cover server costs, allows for the addition of new features, and keeps the learning content free and accessible for everyone. Thank you for being a part of this journey!</p>
-                            <p>For direct support, you can call: <span className={styles.supportNumber}>0740292388</span></p>
-                        </div>
+                    <div className={styles.supportSection}>
+                        <h4>Support Us</h4>
+                        <p>
+                            If you find this application helpful, please consider supporting its development.
+                            Your contribution helps us improve features, add new content, and keep the app running.
+                        </p>
+                        <p>
+                            You can contribute via GitHub Sponsors, Patreon, or by making a one-time donation.
+                            Every little bit helps!
+                        </p>
+                        <button className={styles.formButton}>Donate Now</button>
                     </div>
                 )}
             </div>
