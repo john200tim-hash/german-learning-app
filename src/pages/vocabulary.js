@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
 import styles from '../styles/Layout.module.css';
 
+
 // Import the new components
 import Prefixes from '../components/vocabulary/Prefixes';
 import TimeAdverbs from '../components/vocabulary/TimeAdverbs';
@@ -11,7 +12,16 @@ import HomeAndPeople from '../components/vocabulary/HomeAndPeople';
 import PlacesAndTravel from '../components/vocabulary/PlacesAndTravel';
 import HealthAndSport from '../components/vocabulary/HealthAndSport';
 import LeisureAndMedia from '../components/vocabulary/LeisureAndMedia';
+
 import EducationAndWork from '../components/vocabulary/EducationAndWork';
+import Numbers from '../components/vocabulary/Numbers';
+import Colors from '../components/vocabulary/Colors';
+import FoodAndDrinks from '../components/vocabulary/FoodAndDrinks';
+import Animals from '../components/vocabulary/Animals';
+import ComplexVerbs from '../components/vocabulary/ComplexVerbs';
+import AbstractNouns from '../components/vocabulary/AbstractNouns';
+
+import Idioms from '../components/vocabulary/Idioms';
 
 const vocabularyTabs = {
     prefixes: { label: 'Prefixes', component: Prefixes },
@@ -23,6 +33,13 @@ const vocabularyTabs = {
     'health-sport': { label: 'Health & Sport', component: HealthAndSport },
     'leisure-media': { label: 'Leisure & Media', component: LeisureAndMedia },
     'education-work': { label: 'Education & Work', component: EducationAndWork },
+    numbers: { label: 'Numbers', component: Numbers },
+    colors: { label: 'Colors', component: Colors },
+    'food-drinks': { label: 'Food & Drinks', component: FoodAndDrinks },
+    animals: { label: 'Animals', component: Animals },
+    'complex-verbs': { label: 'Complex Verbs (B1+)', component: ComplexVerbs },
+    'abstract-nouns': { label: 'Abstract Nouns (B1+)', component: AbstractNouns },
+    idioms: { label: 'Idioms (B1+)', component: Idioms },
 };
 
 export default function VocabularyPage() {
@@ -42,6 +59,15 @@ export default function VocabularyPage() {
 
     // Get the component to render based on the active tab
     const ActiveComponent = vocabularyTabs[activeTab]?.component;
+
+    const handleTabClick = (tabKey, event) => {
+        setActiveTab(tabKey);
+        const contentArea = document.getElementById('vocabulary-content');
+        if (contentArea) {
+            contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    };
 
     return (
         <div>
@@ -64,7 +90,7 @@ export default function VocabularyPage() {
                     <button
                         key={tabKey}
                         className={`${styles.subTabBtn} ${activeTab === tabKey ? styles.activeSubTab : ''}`}
-                        onClick={() => setActiveTab(tabKey)}
+                        onClick={(e) => handleTabClick(tabKey, e)}
                     >
                         {vocabularyTabs[tabKey].label}
                     </button>
@@ -72,7 +98,7 @@ export default function VocabularyPage() {
             </div>
 
             {/* Sub-tab content */}
-            <div>
+            <div id="vocabulary-content">
                 {ActiveComponent && <ActiveComponent searchTerm={searchTerm} />}
             </div>
         </div>

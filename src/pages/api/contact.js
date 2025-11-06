@@ -1,8 +1,9 @@
 // src/pages/api/contact.js
 
+import nodemailer from 'nodemailer';
+
 /**
  * API Route to handle contact form submissions.
- * In a real application, this would integrate with an email service (e.g., Nodemailer).
  */
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -12,14 +13,30 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Email and message are required.' });
     }
 
-    // --- In a real application, you would send the email here ---
-    // Example using Nodemailer (requires installation and configuration):
-    // await sendEmail({ to: 'john200tim@gmail.com', from: senderEmail, subject: 'Contact Form Submission', text: message });
+    // Configure the email transporter using your Gmail account
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_SERVER_USER,
+        pass: process.env.EMAIL_SERVER_PASSWORD,
+      },
+    });
 
-    console.log(`Contact form submission from: ${senderEmail}`);
-    console.log(`Message: ${message}`);
+    try {
+      // Send the email
+      await transporter.sendMail({
+        from: `"${senderEmail}" <${process.env.EMAIL_SERVER_USER}>`, // Use your server email as the sender for authentication
+        to: 'john200tim@gmail.com', // The destination email address
+        subject: `Message from ${senderEmail} via German Learning App`,
+        text: message,
+        replyTo: senderEmail, // Set the user's email as the reply-to address
+      });
 
-    res.status(200).json({ success: true, message: 'Message received successfully!' });
+      res.status(200).json({ success: true, message: 'Message sent successfully!' });
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      res.status(500).json({ error: 'Failed to send message.' });
+    }
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });
   }

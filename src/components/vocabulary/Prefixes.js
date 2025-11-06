@@ -1,36 +1,26 @@
 // src/components/vocabulary/Prefixes.js
-
-import React, { useState, useEffect } from 'react';
-import VocabCard from '../lessons/VocabCard';
-
-const prefixData = [
-    { word: "ab-", meaning: "off, away", explanation: "Indicates separation or departure.", example: "Der Zug fährt um 8 Uhr ab. (The train departs at 8.)" },
-    { word: "an-", meaning: "on, at, to", explanation: "Marks contact or beginning.", example: "Sie macht das Licht an. (She turns on the light.)" },
-    { word: "auf-", meaning: "up, open", explanation: "Implies upward motion or opening.", example: "Er steht jeden Morgen früh auf. (He gets up early every morning.)" },
-    { word: "aus-", meaning: "out, from", explanation: "Suggests exit or completion.", example: "Ich fülle das Formular aus. (I fill out the form.)" },
-    { word: "ein-", meaning: "in, into", explanation: "Marks entry or inclusion.", example: "Bitte steigen Sie ein. (Please get in.)" },
-    { word: "mit-", meaning: "with, along", explanation: "Implies cooperation or accompaniment.", example: "Ich komme mit ins Kino. (I'll come with you to the cinema.)" },
-    { word: "nach-", meaning: "after, follow", explanation: "Indicates pursuit or sequence.", example: "Er denkt über das Problem nach. (He thinks about the problem.)" },
-    { word: "vor-", meaning: "before, forward", explanation: "Marks precedence or presentation.", example: "Er stellt sich der Gruppe vor. (He introduces himself to the group.)" },
-    { word: "weg-", meaning: "away", explanation: "Implies removal or disappearance.", example: "Sie wirft den Müll weg. (She throws the trash away.)" },
-    { word: "zu-", meaning: "to, closed", explanation: "Suggests direction or closure.", example: "Bitte machen Sie die Tür zu. (Please close the door.)" }
-];
+import React from 'react';
+import VocabCard from '../../components/lessons/VocabCard';
+import styles from '../../styles/Layout.module.css';
 
 export default function Prefixes({ searchTerm }) {
-    const [filteredData, setFilteredData] = useState(prefixData);
+  const prefixesData = [
+    { word: 'anrufen', meaning: 'to call (on the phone)', explanation: 'The prefix "an-" is separable.', example: 'Ich rufe dich später an. (I will call you later.)' },
+    { word: 'einkaufen', meaning: 'to shop', explanation: 'The prefix "ein-" is separable.', example: 'Wir kaufen im Supermarkt ein. (We are shopping at the supermarket.)' },
+    { word: 'mitkommen', meaning: 'to come with/along', explanation: 'The prefix "mit-" is separable.', example: 'Kommst du mit ins Kino? (Are you coming along to the cinema?)' },
+    { word: 'vorstellen', meaning: 'to introduce, to imagine', explanation: 'The prefix "vor-" is separable.', example: 'Ich stelle mich vor. (I introduce myself.)' },
+    { word: 'zurückgeben', meaning: 'to give back', explanation: 'The prefix "zurück-" is separable.', example: 'Gib mir bitte mein Buch zurück. (Please give me my book back.)' },
+  ];
 
-    useEffect(() => {
-        const term = searchTerm.toLowerCase();
-        const filtered = prefixData.filter(item =>
-            (item.word && item.word.toLowerCase().includes(term)) ||
-            (item.meaning && item.meaning.toLowerCase().includes(term))
-        );
-        setFilteredData(filtered);
-    }, [searchTerm]);
+  const filteredData = prefixesData.filter(item =>
+    item.word.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.meaning.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-    return (
-        <div>
-            {filteredData.map((item, index) => <VocabCard key={index} item={item} />)}
-        </div>
-    );
+  return (
+    <div className={styles.contentCard}>
+      <h2>Separable Prefixes (Trennbare Präfixe)</h2>
+      {filteredData.length > 0 ? filteredData.map((item, index) => <VocabCard key={index} item={item} />) : <p>No prefixes found matching your search.</p>}
+    </div>
+  );
 }

@@ -1,20 +1,56 @@
 /* src/styles/Layout.module.css */
 
+.appWrapper {
+  display: flex; /* Ensures children are laid out */
+  flex-direction: column; /* Stack children vertically */
+  min-height: 100vh;
+  position: relative; /* Needed for sidebar overlay and fixed buttons */
+}
+
 .mainContainer {
   display: flex;
   min-height: 100vh;
+  flex-grow: 1; /* Allow this container to grow and push the footer down */
 }
-
-/* --- Vertical Tabs (Sidebar) --- */
+/* --- Collapsible Sidebar --- */
 .sidebarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 240px;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   padding: 2rem 0;
-  z-index: 20;
-  flex-shrink: 0; /* Prevents the sidebar from shrinking */
+  z-index: 1000;
+  transform: translateX(-100%); /* Hidden by default */
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add shadow for slide-in effect */
 }
 
+.sidebarOpen .sidebarContainer {
+  transform: translateX(0);
+}
+
+/* Desktop styles for sidebar */
+@media (min-width: 1024px) {
+  .appWrapper {
+    padding-left: 240px; /* Make space for the always-visible sidebar */
+  }
+  .sidebarContainer {
+    transform: translateX(0); /* Always visible on desktop */
+  }
+}
+
+.sidebarOverlay {
+  /* This overlay appears when the sidebar is open on mobile */
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Below sidebar, above content */
+}
+
+/* --- Vertical Tabs (Sidebar) --- */
 .sidebarTitle {
   font-size: 1.25rem;
   font-weight: bold;
@@ -59,12 +95,55 @@
   overflow-y: auto;
   background-color: var(--bg-color);
 }
+@media (min-width: 1024px) {
+  .contentArea {
+    padding: 2rem; /* Keep padding on desktop */
+  }
+}
+
+/* --- Hamburger Button --- */
+.hamburgerButton {
+  position: fixed; /* Fixed position for mobile hamburger */
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  width: 48px; /* Make it a decent tap target */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Make it round */
+  background-color: var(--card-bg); /* Give it a background */
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001; /* Above sidebar */
+}
+
+@media (min-width: 1024px) {
+  .hamburgerButton {
+    display: none; /* Hide hamburger on desktop */
+  }
+  .settingsButton {
+    /* On desktop, settings button is fixed and not part of header */
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+  }
+}
 
 /* --- Sub-tabs --- */
 .subTabs {
   display: flex;
-  border-bottom: 2px solid var(--card-border);
-  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+}
+.subTabs::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .subTabBtn {
@@ -81,6 +160,27 @@
 
 .subTabBtn:hover {
   color: #111827; /* gray-900 */
+}
+
+.subTabsWrapper::before,
+.subTabsWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30px; /* Width of the fade */
+  pointer-events: none; /* Allows clicking through the fade */
+  z-index: 2;
+}
+
+.subTabsWrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color), transparent);
+}
+
+.subTabsWrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color), transparent);
 }
 
 .activeSubTab {
@@ -193,10 +293,10 @@
 }
 
 /* --- Settings Button & Modal --- */
-.settingsButton {
+.settingsButton { /* Always fixed, top-right */
   position: fixed;
   top: 1rem;
-  left: 260px; /* Sidebar width + padding */
+  right: 1rem; 
   z-index: 30;
   width: 48px;
   height: 48px;
@@ -406,5 +506,24 @@ input:checked + .slider:before {
   color: green;
   margin-top: 0.5rem;
   text-align: center;
+}
+
+/* --- Footer Styles --- */
+.footer {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footerLink {
+  background: none;
+  border: none;
+  color: var(--active-tab-border);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
 }
 /* The file should end here. Any text after this was an error and has been removed. */

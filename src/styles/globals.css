@@ -1,7 +1,8 @@
 /* src/styles/globals.css */
 
-/* --- Color Palette & Dark Mode --- */
-:root {
+/* --- COLOR MODE A (Default Indigo) --- */
+/* Light Mode A */
+:root.mode-a {
     --bg-color: #f3f4f6; /* gray-100 */
     --text-color: #374151; /* gray-700 */
     --card-bg: #ffffff;
@@ -14,7 +15,8 @@
     --heading-color: #4338ca; /* indigo-700 */
 }
 
-html.dark {
+/* Dark Mode A */
+html.dark.mode-a {
     --bg-color: #111827; /* gray-900 */
     --text-color: #d1d5db; /* gray-300 */
     --card-bg: #1f2937; /* gray-800 */
@@ -27,7 +29,8 @@ html.dark {
     --heading-color: #818cf8; /* indigo-400 */
 }
 
-html.high-contrast {
+/* High Contrast Mode A */
+html.high-contrast.mode-a {
     --bg-color: #000000;
     --text-color: #ffffff;
     --card-bg: #000000;
@@ -36,6 +39,93 @@ html.high-contrast {
     --active-tab-bg: #ffff00; /* Yellow */
     --active-tab-border: #ffff00;
     --heading-color: #ffff00;
+}
+
+/* --- COLOR MODE B (Forest Green) --- */
+/* Light Mode B */
+:root.mode-b {
+    --bg-color: #fdfbf6; /* Off-white */
+    --text-color: #4d4c4a; /* Dark brown-gray */
+    --card-bg: #ffffff;
+    --card-border: #e5e7eb;
+    --sidebar-bg: #283618; /* Dark olive */
+    --sidebar-text: #fefae0; /* Cornsilk */
+    --subtab-text: #606c38; /* Olive */
+    --active-tab-bg: #606c38; /* Olive */
+    --active-tab-border: #dda15e; /* Earth yellow */
+    --heading-color: #283618; /* Dark olive */
+}
+
+/* Dark Mode B */
+html.dark.mode-b {
+    --bg-color: #1a1a1a; /* Very dark gray */
+    --text-color: #fefae0; /* Cornsilk */
+    --card-bg: #2a2a2a; /* Darker gray */
+    --card-border: #4d4c4a;
+    --sidebar-bg: #000000;
+    --sidebar-text: #fefae0;
+    --subtab-text: #dda15e;
+    --active-tab-bg: #dda15e; /* Earth yellow */
+    --active-tab-border: #fefae0;
+    --heading-color: #dda15e;
+}
+
+/* --- COLOR MODE C (Ocean Blue) --- */
+/* Light Mode C */
+:root.mode-c {
+    --bg-color: #edf6f9; /* Very light blue */
+    --text-color: #003049; /* Dark blue */
+    --card-bg: #ffffff;
+    --card-border: #e0fbfc;
+    --sidebar-bg: #003049; /* Dark blue */
+    --sidebar-text: #e0fbfc; /* Light cyan */
+    --subtab-text: #0077b6; /* Medium blue */
+    --active-tab-bg: #0077b6;
+    --active-tab-border: #fb8500; /* Orange */
+    --heading-color: #003049;
+}
+
+/* Dark Mode C */
+html.dark.mode-c {
+    --bg-color: #023047; /* Dark blue */
+    --text-color: #e0fbfc; /* Light cyan */
+    --card-bg: #001d3d; /* Even darker blue */
+    --card-border: #003049;
+    --sidebar-bg: #000000;
+    --sidebar-text: #e0fbfc;
+    --subtab-text: #fb8500; /* Orange */
+    --active-tab-bg: #fb8500;
+    --active-tab-border: #e0fbfc;
+    --heading-color: #fb8500;
+}
+
+/* --- COLOR MODE D (Sakura Pink) --- */
+/* Light Mode D */
+:root.mode-d {
+    --bg-color: #fff5f7; /* Very light pink */
+    --text-color: #5c2a3b; /* Deep magenta */
+    --card-bg: #ffffff;
+    --card-border: #fce4ec;
+    --sidebar-bg: #e91e63; /* Main pink */
+    --sidebar-text: #ffffff;
+    --subtab-text: #c2185b; /* Darker pink */
+    --active-tab-bg: #c2185b;
+    --active-tab-border: #ffc107; /* Amber for contrast */
+    --heading-color: #ad1457; /* Deepest pink */
+}
+
+/* Dark Mode D */
+html.dark.mode-d {
+    --bg-color: #2c001e; /* Deep purple/magenta */
+    --text-color: #fde8f0; /* Light pink */
+    --card-bg: #3c0d2c;
+    --card-border: #880e4f;
+    --sidebar-bg: #000000;
+    --sidebar-text: #fde8f0;
+    --subtab-text: #ff80ab; /* Bright pink */
+    --active-tab-bg: #ff80ab;
+    --active-tab-border: #fde8f0;
+    --heading-color: #ff80ab;
 }
 
 /* --- Base & Fonts --- */

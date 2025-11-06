@@ -11,11 +11,11 @@ const navItems = [
     { href: '/practice', label: 'Practice' },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen }) {
     const router = useRouter();
 
     return (
-        <nav className={styles.sidebarContainer}>
+        <nav className={`${styles.sidebarContainer} ${isOpen ? styles.sidebarOpen : ''}`}>
             <h2 className={styles.sidebarTitle}>Learn German</h2>
             {navItems.map(({ href, label }) => (
                 <Link href={href} key={label} className={`${styles.tabBtn} ${router.pathname.startsWith(href) && href !== '/' || router.pathname === href ? styles.active : ''}`}>
