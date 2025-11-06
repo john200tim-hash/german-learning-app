@@ -4,9 +4,9 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const ThemeContext = createContext();
 
-// Custom hook to consume ThemeContext
 export const useTheme = () => useContext(ThemeContext);
 
+// ThemeContext provider component
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light'); // 'light', 'dark', or 'high-contrast'
   const [textSize, setTextSize] = useState('base'); // 'sm', 'base', 'lg', 'xl', 'xxl'
