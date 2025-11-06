@@ -1,8 +1,5 @@
 /* src/styles/Layout.module.css */
 
-.appWrapper {
-  
-
 .mainContainer {
   display: flex;
   min-height: 100vh;
