@@ -117,11 +117,33 @@
     display: none; /* Hide hamburger on desktop */
   }
   .settingsButton {
-    /* On desktop, settings button is fixed and not part of header */
     position: fixed;
     top: 1rem;
     right: 1rem;
   }
+}
+
+/* --- Settings Button & Modal --- */
+.settingsButton {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001; /* Ensure it's above other content */
+  width: 48px;
+  height: 48px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.settingsButton:hover {
+  transform: rotate(45deg);
 }
 
 /* --- Sub-tabs (Horizontal Scrolling with Fades) --- */
