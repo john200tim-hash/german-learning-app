@@ -121,14 +121,12 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
                     <div className={styles.supportSection}>
                         <h4>Support Us</h4>
                         <p>
-                            If you find this application helpful, please consider supporting its development.
-                            Your contribution helps us improve features, add new content, and keep the app running.
+                            If you find this application helpful, please consider supporting its development. Your contribution helps us improve features and keep the app running.
                         </p>
-                        <p>
-                            You can contribute via GitHub Sponsors, Patreon, or by making a one-time donation.
-                            Every little bit helps!
-                        </p>
-                        <button className={styles.formButton}>Donate Now</button>
+                        <p>You can donate (support) to the number below:</p>
+                        <div className={styles.donationNumber}>
+                            0740292388
+                        </div>
                     </div>
                 )}
             </div>
