@@ -17,12 +17,6 @@
   padding-top: 1rem;
 }
 
-.contactSection h4 {
-...
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
 .pronounTable th,
 .pronounTable td {
   padding: 1rem 1.25rem; /* Corrected padding value */
