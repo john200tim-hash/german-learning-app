@@ -255,11 +255,6 @@
     margin-left: 0.5em;
 }
 
-/* tooltip styles for support information in the footer */
-    visibility: hidden;
-    width: 200px;
-    background-color: var(--card-bg);
-
 .questionMark {
     display: inline-flex;
     align-items: center;
