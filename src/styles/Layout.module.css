@@ -408,11 +408,3 @@ input:checked + .slider:before {
   text-align: center;
 }
 /* The file should end here. Any text after this was an error and has been removed. */
-
-.contactError {
-  color: red;
-  margin-top: 0.5rem;
-  text-align: center;
-}
-
-/* 
