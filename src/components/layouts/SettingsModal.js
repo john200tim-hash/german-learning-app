@@ -13,7 +13,7 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
     } = useTheme();
 
     const [activeTab, setActiveTab] = useState(initialTab || 'settings');
-    const [formState, setFormState] = useState({ email: '', message: '' });
+    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
     const [submissionStatus, setSubmissionStatus] = useState('idle'); // 'idle', 'submitting', 'success', 'error'
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
 
             if (response.ok) {
                 setSubmissionStatus('success');
-                setFormState({ email: '', message: '' }); // Clear form
+                setFormState({ name: '', email: '', message: '' }); // Clear form
             } else {
                 setSubmissionStatus('error');
             }
@@ -136,6 +136,10 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
                             <div className={styles.contactSection}>
                                 <h4>Get in Touch</h4>
                                 <form className={styles.contactForm} onSubmit={handleFormSubmit}>
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" id="name" value={formState.name} onChange={handleFormChange} className={styles.formInput} required />
+                                    </div>
                                     <div className={styles.formGroup}>
                                         <label htmlFor="email">Email</label>
                                         <input type="email" id="email" value={formState.email} onChange={handleFormChange} className={styles.formInput} required />
