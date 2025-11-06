@@ -390,15 +390,18 @@ input:checked + .slider:before {
   opacity: 0.7;
 }
 
-.contactSuccess {
+.contactSuccess, .contactError {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem; /* More vertical padding for emphasis */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px; /* Ensure it takes up space */
 }
 
 .contactError {
-  color: red;
-  margin-top: 0.5rem;
-  text-align: center;
+  color: #ef4444; /* red-500 */
 }
 
 /* --- Support Section in Settings Modal --- */
