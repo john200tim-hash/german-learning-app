@@ -14,7 +14,8 @@
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
   padding: 2rem 0;
-  z-index: 20;revr from shrinking */
+  z-index: 20;
+  flex-shrink: 0; /* Prevents the sidebar from shrinking */
 }
 
 .sidebarTitle {
