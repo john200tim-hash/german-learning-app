@@ -1,8 +1,8 @@
 // src/components/grammar/IndefiniteWords.js
 
 import React from 'react';
-import VocabCard from '../../components/lessons/VocabCard';
 import styles from '../../styles/Layout.module.css';
+import VocabCard from '../../components/lessons/VocabCard';
 
 const indefinitePronounsData = [
     { word: 'jemand', meaning: 'someone, anybody', explanation: 'Refers to an unspecified person.', example: 'Jemand hat an der Tür geklopft. (Someone knocked on the door.)' },
@@ -30,6 +30,19 @@ export default function IndefiniteWords({ searchTerm }) {
 
     return (
         <div className={styles.contentCard}>
+            <div className={styles.videoPreviewContainer}>
+                <h3 className={styles.videoPreviewTitle}>Video Lesson: Irgend-Words (Indefinite Pronouns)</h3>
+                <div className={styles.videoWrapper}>
+                    <iframe
+                        src="https://www.youtube.com/embed/TqP9t1I0xLw"
+                        title="YouTube video player for Irgend-Words"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+            </div>
+
             <h2>Indefinite Words (Indefinitpronomen)</h2>
             {filteredData.length > 0 ? filteredData.map((item, index) => <VocabCard key={index} item={item} />) : <p>No items found matching your search.</p>}
         </div>

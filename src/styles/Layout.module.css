@@ -724,6 +724,39 @@ input:checked + .slider:before {
   color: var(--subtab-text);
 }
 
+/* --- Video Preview Styles --- */
+.videoPreviewContainer {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.videoPreviewTitle {
+  font-size: 1.2rem;
+  color: var(--heading-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* Removed Progress Bar Styles */
 /*
 .progressBarContainer { ... }

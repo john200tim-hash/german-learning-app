@@ -1,3 +1,4 @@
+
 // src/components/layouts/SettingsModal.js
 
 import React, { useState, useEffect } from 'react';
@@ -30,11 +31,10 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         setSubmissionStatus('submitting');
-
         try {
             const response = await fetch('https://formspree.io/f/meopylpb', {
                 method: 'POST',
-                headers: { 'Accept': 'application/json' },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formState)
             });
 
@@ -131,39 +131,26 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
                 )}
 
                 {activeTab === 'contact' && (
-                    <>
-                        {submissionStatus === 'idle' || submissionStatus === 'submitting' ? (
-                            <div className={styles.contactSection}>
-                                <h4>Get in Touch</h4>
-                                <form className={styles.contactForm} onSubmit={handleFormSubmit}>
-                                    <div className={styles.formGroup}>
-                                        <label htmlFor="name">Name</label>
-                                        <input type="text" id="name" value={formState.name} onChange={handleFormChange} className={styles.formInput} required />
-                                    </div>
-                                    <div className={styles.formGroup}>
-                                        <label htmlFor="email">Email</label>
-                                        <input type="email" id="email" value={formState.email} onChange={handleFormChange} className={styles.formInput} required />
-                                    </div>
-                                    <div className={styles.formGroup}>
-                                        <label htmlFor="message">Message</label>
-                                        <textarea id="message" name="message" rows="4" value={formState.message} onChange={handleFormChange} className={styles.formTextarea} required></textarea>
-                                    </div>
-                                    <button type="submit" className={styles.formButton} disabled={submissionStatus === 'submitting'}>
-                                        {submissionStatus === 'submitting' ? 'Sending...' : 'Send Message'}
-                                    </button>
-                                </form>
+                    <div className={styles.contactSection}>
+                        <h4>Get in Touch</h4>
+                        <form className={styles.contactForm} onSubmit={handleFormSubmit}>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="name">Name</label>
+                                <input type="text" id="name" value={formState.name} onChange={handleFormChange} className={styles.formInput} required />
                             </div>
-                        ) : submissionStatus === 'success' ? (
-                            <div className={styles.contactSuccess}>
-                                <h4>Message Sent!</h4>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="email">Email</label>
+                                <input type="email" id="email" value={formState.email} onChange={handleFormChange} className={styles.formInput} required />
                             </div>
-                        ) : (
-                            <div className={styles.contactError}>
-                                <h4>Something went wrong.</h4>
-                                <p>Please try again later.</p>
+                            <div className={styles.formGroup}>
+                                <label htmlFor="message">Message</label>
+                                <textarea id="message" rows="4" value={formState.message} onChange={handleFormChange} className={styles.formTextarea} required></textarea>
                             </div>
-                        )}
-                    </>
+                            <button type="submit" className={styles.formButton} disabled={submissionStatus === 'submitting'}>
+                                {submissionStatus === 'submitting' ? 'Sending...' : 'Send Message'}
+                            </button>
+                        </form>
+                    </div>
                 )}
 
                 {activeTab === 'support' && (
@@ -172,10 +159,10 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
                         <p>
                             If you find this application helpful, please consider supporting its development. Your contribution helps us improve features and keep the app running.
                         </p>
-                        <p>You can donate (support) to the number below:</p>
-                        <div className={styles.donationNumber}>
-                            0740292388
-                        </div>
+                        <p>
+                            You can donate (support) to the number below:
+                        </p>
+                        <div className={styles.donationNumber}>0740292388</div>
                     </div>
                 )}
             </div>

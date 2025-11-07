@@ -19,6 +19,19 @@ export default function PassiveSubstitutes({ searchTerm }) {
 
     return (
         <div className={styles.contentCard}>
+            <div className={styles.videoPreviewContainer}>
+                <h3 className={styles.videoPreviewTitle}>Video Lesson: Passive Voice Substitutes</h3>
+                <div className={styles.videoWrapper}>
+                    <iframe
+                        src="https://www.youtube.com/embed/-ZAGeuSb6-U"
+                        title="YouTube video player for Passive Voice Substitutes"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
+            </div>
+
             <h2>Passive Voice Substitutes (Passiversatzformen)</h2>
             {filteredData.length > 0 ? filteredData.map((item, index) => <VocabCard key={index} item={item} />) : <p>No items found matching your search.</p>}
         </div>
