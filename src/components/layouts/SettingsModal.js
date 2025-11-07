@@ -32,7 +32,7 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
         e.preventDefault();
         setSubmissionStatus('submitting');
         try {
-            const response = await fetch('https://formspree.io/f/meopylpb', {
+            const response = await fetch('https://formspree.io/f/xdkpqrgg', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formState)
