@@ -209,6 +209,25 @@ const prefixNotesData = [
       sentence_trans: 'Take the book out.'
     }
   ]
+},
+{
+  prefix: 'fest-',
+  meaning: 'firm, fixed, set',
+  explanation: 'Implies firmness, permanence, or something being locked in place.',
+  examples: [
+    {
+      german: 'festhalten',
+      translation: 'to hold on (to), to detain',
+      sentence: 'Halte dich gut fest!',
+      sentence_trans: 'Hold on tight!'
+    },
+    {
+      german: 'festlegen',
+      translation: 'to determine, to set (rules, dates)',
+      sentence: 'Wir müssen einen Termin festlegen.',
+      sentence_trans: 'We need to set a date.'
+    }
+  ]
 }
 ];
 
