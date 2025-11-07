@@ -8,11 +8,14 @@ import IndefiniteWords from '../components/grammar/IndefiniteWords';
 import Pronouns from '../components/grammar/Pronouns';
 import PassiveSubstitutes from '../components/grammar/PassiveSubstitutes';
 import Conjunctions from '../components/grammar/Conjunctions';
+import Prefixes from '../components/grammar/Prefixes'; // Import the new Prefixes component from grammar folder
+
 const grammarTabs = {
     'indefinite-words': { label: 'Indefinite Words', component: IndefiniteWords },
     pronouns: { label: 'Pronouns', component: Pronouns },
     'passive-substitutes': { label: 'Passive Substitutes', component: PassiveSubstitutes },
     'conjunctions': { label: 'Conjunctions', component: Conjunctions },
+    'prefixes': { label: 'Prefixes', component: Prefixes }, // Add the new Prefixes tab
 };
 
 export default function GrammarPage() {
