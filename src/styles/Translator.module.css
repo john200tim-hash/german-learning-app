@@ -1,0 +1,224 @@
+/* src/styles/Translator.module.css */
+
+.translatorContainer {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.languageSelectors {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.langSelect {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.swapButton {
+    background-color: transparent;
+    border: 1px solid var(--card-border);
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.swapButton:hover {
+    transform: rotate(180deg);
+    background-color: var(--bg-color);
+}
+
+.textAreas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .textAreas {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.textAreaWrapper {
+    position: relative;
+}
+
+.mainTextArea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    padding-bottom: 40px; /* Space for icon buttons */
+    border: 1px solid var(--card-border);
+    border-radius: 0.5rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    resize: vertical;
+}
+
+.iconButton {
+    position: absolute;
+    bottom: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--subtab-text);
+}
+
+.iconButton:hover {
+    color: var(--active-tab-bg);
+}
+
+.micButton {
+    left: 10px;
+}
+
+.listening {
+    color: var(--active-tab-bg);
+    animation: pulse 1.5s infinite;
+}
+
+.speakButton {
+    right: 10px;
+}
+
+.translateButton {
+    background-color: var(--active-tab-bg);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.detectedLang {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    color: var(--subtab-text);
+    background-color: var(--bg-color);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.alternativesContainer {
+    margin-top: 1rem;
+    border-top: 1px solid var(--card-border);
+    padding-top: 1rem;
+}
+
+.alternativesTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--subtab-text);
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+}
+
+.alternativesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.alternativeItem {
+    background-color: var(--bg-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    border: 1px solid var(--card-border);
+}
+
+.favoritesContainer {
+    margin-top: 1rem;
+    border-top: 1px solid var(--card-border);
+    padding-top: 1rem;
+}
+
+.favoritesTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--subtab-text);
+    margin: 0 0 0.75rem 0;
+    text-transform: uppercase;
+}
+
+.favoritesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.favoriteItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--card-border);
+}
+
+.favoriteText {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.favoriteTranslation {
+    font-weight: 600;
+    color: var(--active-tab-bg);
+}
+
+.removeFavoriteButton {
+    background: none;
+    border: none;
+    color: var(--subtab-text);
+    cursor: pointer;
+}

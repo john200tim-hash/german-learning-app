@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import TemporalPredictor from '../game/TemporalPredictor'; // Import the new game component
 import styles from '../../styles/Layout.module.css';
 
 export default function SettingsModal({ isOpen, onClose, initialTab }) {
@@ -79,6 +80,10 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
                         className={`${styles.subTabBtn} ${activeTab === 'support' ? styles.activeSubTab : ''}`}
                         onClick={() => setActiveTab('support')}
                     >Support</button>
+                    <button
+                        className={`${styles.subTabBtn} ${activeTab === 'game' ? styles.activeSubTab : ''}`}
+                        onClick={() => setActiveTab('game')}
+                    >Game</button>
                 </div>
 
                 {activeTab === 'settings' && (
@@ -171,6 +176,15 @@ export default function SettingsModal({ isOpen, onClose, initialTab }) {
                             You can donate (support) to the number below:
                         </p>
                         <div className={styles.donationNumber}>0740292388</div>
+                    </div>
+                )}
+
+                {activeTab === 'game' && (
+                    <div className={styles.modalBody}>
+                        <h4 style={{ textAlign: 'center', fontStyle: 'italic', marginBottom: '1rem' }}>
+                            Because learning doesnt have to be boring
+                        </h4>
+                        <TemporalPredictor />
                     </div>
                 )}
             </div>

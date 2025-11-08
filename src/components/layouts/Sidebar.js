@@ -9,6 +9,7 @@ const navItems = [
     { href: '/vocabulary', label: 'Vocabulary' },
     { href: '/grammar', label: 'Grammar' },
     { href: '/practice', label: 'Practice' },
+    { href: '/translate', label: 'Translate' },
 ];
 
 export default function Sidebar({ isOpen }) {
