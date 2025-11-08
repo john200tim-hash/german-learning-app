@@ -65,25 +65,37 @@ export default function Translator() {
         setIsTranslating(true);
         setOutputText('Translating...');
 
-        // --- This is a placeholder for a real translation API ---
-        // You would replace this with a call to Google Translate, DeepL, etc.
-        // For demonstration, we'll use a free, public API that may have limitations.
         try {
-            const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(textToTranslate)}&langpair=${from}|${to}`);
-            const data = await response.json();
+            // --- Smart Translation Logic ---
+            // Step 1: Use a knowledge API to "understand" and correct the input text in English.
+            // This helps handle typos and ambiguous questions.
+            const knowledgeResponse = await fetch(`https://api.duckduckgo.com/?q=${encodeURIComponent(textToTranslate)}&format=json`);
+            const knowledgeData = await knowledgeResponse.json();
+            
+            // Use the corrected query from the knowledge API if available, otherwise use the original text.
+            const cleanedText = knowledgeData.Heading || textToTranslate;
 
-            if (data.responseData) {
-                setOutputText(data.responseData.translatedText);
-                setAlternatives(data.matches.slice(1, 4)); // Get up to 3 alternatives
+            // Step 2: Translate the cleaned text to the target language.
+            const translationResponse = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(cleanedText)}&langpair=${from}|${to}`);
+            const translationData = await translationResponse.json();
+
+            if (translationData.responseData) {
+                setOutputText(translationData.responseData.translatedText);
+                // Filter alternatives to ensure they are high-quality and genuinely different.
+                const uniqueAlternatives = translationData.matches
+                    .filter(match => 
+                        match.quality > 70 && // Only accept matches with a quality score over 70%
+                        match.translation.toLowerCase() !== translationData.responseData.translatedText.toLowerCase()
+                    ).slice(0, 3); // Take the top 3 high-quality alternatives
+                setAlternatives(uniqueAlternatives);
             } else {
                 setOutputText('No translation found.');
                 setAlternatives([]);
             }
         } catch (error) {
             console.error("Translation API error:", error);
-            setOutputText('Error: Could not connect to translation service.');
+            setOutputText('Error: Could not connect to the translation service.');
         }
-        // --- End of placeholder API call ---
 
         setIsTranslating(false);
     };
