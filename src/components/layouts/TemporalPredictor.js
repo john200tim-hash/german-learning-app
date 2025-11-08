@@ -105,7 +105,6 @@ const translations = {
 };
 // --- END TRANSLATION DATA ---
 
-// The main, single-file component must be the default export.
 const TemporalPredictor = () => {
   const [inputDate, setInputDate] = useState('');
   const [predictedDay, setPredictedDay] = useState(null);
@@ -113,27 +112,22 @@ const TemporalPredictor = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState('');
   const [predictionDetails, setPredictionDetails] = useState(null);
-  const [language, setLanguage] = useState('en'); // NEW: Language state
+  const [language, setLanguage] = useState('en');
 
-  const t = translations[language]; // Current translation object
+  const t = translations[language];
 
-  // Function to get a random, absurd prediction based on the current language
   const getGagPrediction = useCallback(() => {
     const randomIndex = Math.floor(Math.random() * t.gags.length);
     const selectedGag = t.gags[randomIndex];
-
-    // Map vibe index to the translated string
     const vibeKey = `v${randomIndex + 1}`;
     const vibe = t.vibes[vibeKey] || t.vibes.v1;
-
     return {
       ...selectedGag,
       vibe: vibe,
-      confidence: Math.floor(Math.random() * 50) + 50 + "." + Math.floor(Math.random() * 99) + "%", // Random confidence
+      confidence: Math.floor(Math.random() * 50) + 50 + "." + Math.floor(Math.random() * 99) + "%",
     };
   }, [t]);
 
-  // Helper to get a random translated margin of error
   const getRandomError = useCallback(() => {
       return t.errorGags[Math.floor(Math.random() * t.errorGags.length)];
   }, [t]);
@@ -160,12 +154,8 @@ const TemporalPredictor = () => {
       return;
     }
 
-    // Calculate the next day (24 hours later)
     dateObj.setDate(dateObj.getDate() + 1);
-
-    // Format the date based on the selected language's locale
     const locale = language === 'de' ? 'de-DE' : 'en-US';
-    
     const nextDayStr = dateObj.toLocaleDateString(locale, {
       weekday: 'long',
       year: 'numeric',
@@ -173,175 +163,161 @@ const TemporalPredictor = () => {
       day: 'numeric'
     });
     
-    // Simulate a complex (and expensive) temporal analysis process
     setTimeout(() => {
       setIsAnalyzing(false);
       const result = getGagPrediction();
       setPredictedDay(result.message);
       setPredictionDetails(result);
       setNextActualDay(nextDayStr); 
-    }, 2500); // 2.5 second analysis delay
+    }, 2500);
   };
 
   const LanguageToggle = () => (
-    <div className="flex justify-end mb-4">
-      <div className="flex border border-gray-600 rounded-lg overflow-hidden bg-gray-700">
+    <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+      <div style={{ display: 'flex', border: '1px solid var(--card-border)', borderRadius: '0.5rem', overflow: 'hidden', backgroundColor: 'var(--bg-color)' }}>
         <button
           onClick={() => setLanguage('en')}
-          className={`flex items-center px-3 py-1 text-sm font-medium transition duration-150 ${
-            language === 'en' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:bg-gray-600'
-          }`}
+          style={{ 
+            display: 'flex', alignItems: 'center', padding: '0.25rem 0.75rem', fontSize: '0.875rem', fontWeight: '500', transition: 'all 0.15s',
+            background: 'none', border: 'none', cursor: 'pointer',
+            ...(language === 'en' ? { backgroundColor: 'var(--active-tab-bg)', color: 'var(--active-tab-text, white)' } : { color: 'var(--text-color)' })
+          }}
         >
-          <Globe className="h-4 w-4 mr-1" /> EN
+          <Globe style={{ height: '1rem', width: '1rem', marginRight: '0.25rem' }} /> EN
         </button>
         <button
           onClick={() => setLanguage('de')}
-          className={`flex items-center px-3 py-1 text-sm font-medium transition duration-150 ${
-            language === 'de' ? 'bg-blue-600 text-white' : 'text-gray-400 hover:bg-gray-600'
-          }`}
+          style={{ 
+            display: 'flex', alignItems: 'center', padding: '0.25rem 0.75rem', fontSize: '0.875rem', fontWeight: '500', transition: 'all 0.15s',
+            background: 'none', border: 'none', cursor: 'pointer',
+            ...(language === 'de' ? { backgroundColor: 'var(--active-tab-bg)', color: 'var(--active-tab-text, white)' } : { color: 'var(--text-color)' })
+          }}
         >
-          <Globe className="h-4 w-4 mr-1" /> DE
+          <Globe style={{ height: '1rem', width: '1rem', marginRight: '0.25rem' }} /> DE
         </button>
       </div>
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4 font-inter">
-      <script src="https://cdn.tailwindcss.com"></script>
+    <div style={{ fontFamily: "'Inter', sans-serif", background: 'var(--card-bg)', color: 'var(--text-color)' }}>
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-          .font-inter { font-family: 'Inter', sans-serif; }
-          .glow-border {
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); /* blue-500 glow */
-          }
-          .analyze-button {
-            transition: all 0.3s ease;
-          }
-          .analyze-button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-          }
-          .loading-spin {
-            animation: spin 1.5s linear infinite;
-          }
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+          @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+          .font-orbitron { font-family: 'Orbitron', sans-serif; }
+          .loading-spin { animation: spin 1.5s linear infinite; }
+          @keyframes spin { to { transform: rotate(360deg); } }
+          .date-input-container input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer; opacity: 0; position: absolute; left: 0; top: 0; width: 100%; height: 100%;
           }
         `}
       </style>
 
-      <div className="w-full max-w-lg bg-gray-800 p-6 rounded-xl shadow-2xl border border-blue-600/50 glow-border">
+      <div style={{ width: '100%', maxWidth: '32rem', padding: '1.5rem', borderRadius: '0.75rem', boxShadow: 'var(--box-shadow)', backgroundColor: 'var(--card-bg)', color: 'var(--text-color)', border: '1px solid var(--card-border)' }}>
         <LanguageToggle />
         
-        <h1 className="text-3xl md:text-4xl font-bold text-center text-blue-400 mb-2 tracking-wide">
-          <Zap className="inline-block mr-2 h-7 w-7" />
+        <h1 className="font-orbitron" style={{ fontSize: '1.875rem', fontWeight: '700', textAlign: 'center', marginBottom: '0.5rem', color: 'var(--heading-color)' }}>
+          <Zap style={{ display: 'inline-block', marginRight: '0.5rem', height: '1.75rem', width: '1.75rem' }} />
           {t.title}
         </h1>
-        <p className="text-center text-gray-400 mb-8">
+        <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'var(--subtab-text)' }}>
           {t.subtitle}
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="relative">
-            <label htmlFor="date-input" className="block text-sm font-medium text-gray-300 mb-2">
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div className="date-input-container" style={{ position: 'relative' }}>
+            <label htmlFor="date-input" style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: 'var(--text-color)', marginBottom: '0.5rem' }}>
               {t.label}
             </label>
-            <input
-              id="date-input"
-              type="date"
-              value={inputDate}
-              onChange={(e) => {
-                setInputDate(e.target.value);
-                setPredictedDay(null);
-                setNextActualDay(null);
-                setError('');
-              }}
-              className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150"
-              required
-            />
+            <div style={{ position: 'relative' }}>
+                <input
+                  id="date-input"
+                  type="date"
+                  value={inputDate}
+                  onChange={(e) => {
+                    setInputDate(e.target.value);
+                    setPredictedDay(null);
+                    setNextActualDay(null);
+                    setError('');
+                  }}
+                  style={{ width: '100%', padding: '0.75rem', paddingLeft: '2.5rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', backgroundColor: 'var(--bg-color)', color: 'var(--text-color)' }}
+                  required
+                />
+                <Calendar style={{ position: 'absolute', left: '0.75rem', top: '50%', transform: 'translateY(-50%)', height: '1.25rem', width: '1.25rem', color: 'var(--subtab-text)', pointerEvents: 'none' }} />
+            </div>
           </div>
 
           {error && (
-            <div className="bg-red-900/40 border border-red-500 text-red-300 p-3 rounded-lg text-sm">
-              <span className="font-semibold">{t.confidence}:</span> {error}
+            <div style={{ padding: '0.75rem', borderRadius: '0.5rem', fontSize: '0.875rem', border: '1px solid #ef4444', color: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.1)' }}>
+              <span style={{ fontWeight: '600' }}>Error:</span> {error}
             </div>
           )}
 
           <button
             type="submit"
             disabled={isAnalyzing || !inputDate}
-            className={`analyze-button w-full flex items-center justify-center p-3 rounded-lg font-semibold text-lg transition duration-300
-              ${isAnalyzing || !inputDate
-                ? 'bg-blue-800/50 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800'
-              }`}
+            style={{ 
+                width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0.75rem', borderRadius: '0.5rem', fontWeight: '700', fontSize: '1.125rem', transition: 'all 0.3s',
+                backgroundColor: 'var(--active-tab-bg)', color: 'var(--active-tab-text, white)', border: 'none',
+                cursor: (isAnalyzing || !inputDate) ? 'not-allowed' : 'pointer', opacity: (isAnalyzing || !inputDate) ? 0.5 : 1
+            }}
           >
             {isAnalyzing ? (
               <>
-                <Loader2 className="loading-spin h-5 w-5 mr-2" />
+                <Loader2 className="loading-spin" style={{ height: '1.25rem', width: '1.25rem', marginRight: '0.5rem' }} />
                 {t.buttonAnalyze}
               </>
             ) : (
               <>
-                <Zap className="h-5 w-5 mr-2" />
+                <Zap style={{ height: '1.25rem', width: '1.25rem', marginRight: '0.5rem' }} />
                 {t.buttonRun}
               </>
             )}
           </button>
         </form>
 
-        {/* Prediction Results Display */}
         {predictedDay && predictionDetails && nextActualDay && (
-          <div className="mt-8 pt-6 border-t border-gray-700 space-y-4">
-            
-            <div className="flex items-center space-x-4">
-              <RefreshCw className="h-10 w-10 text-blue-400" /> {/* Re-using a fixed icon for simplicity here */}
-              <h2 className="text-xl font-bold text-blue-300">{predictionDetails.title}</h2>
+          <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--card-border)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <RefreshCw style={{ height: '2.5rem', width: '2.5rem', color: 'var(--active-tab-bg)' }} />
+              <h2 className="font-orbitron" style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--active-tab-bg)' }}>{predictionDetails.title}</h2>
             </div>
-
-            {/* The Main Gag Prediction Block */}
-            <div className="bg-gray-700 p-5 rounded-lg shadow-inner border border-blue-500/50">
-              <p className="text-gray-200 leading-relaxed">
-                <span className="text-lg font-bold text-yellow-300 block mb-2 flex items-center">
-                  <AlertTriangle className="h-5 w-5 mr-2 text-red-400"/>
+            <div style={{ padding: '1.25rem', borderRadius: '0.5rem', border: '1px solid var(--active-tab-border)', backgroundColor: 'var(--bg-color)' }}>
+              <p style={{ lineHeight: '1.6', color: 'var(--text-color)' }}>
+                <span style={{ fontSize: '1.125rem', fontWeight: '700', display: 'block', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', color: 'var(--heading-color)' }}>
+                  <AlertTriangle style={{ height: '1.25rem', width: '1.25rem', marginRight: '0.5rem' }}/>
                   {t.predictionHeader}
                 </span>
                 {t.predictionIntro}
-                <span className="block text-3xl font-extrabold text-white mt-1 mb-2 tracking-wider">
+                <span className="font-orbitron" style={{ display: 'block', fontSize: '1.875rem', fontWeight: '800', marginTop: '0.25rem', marginBottom: '0.5rem', color: 'var(--active-tab-bg)' }}>
                     {nextActualDay}
                 </span>
-                <span className="block text-sm text-red-400 font-mono italic p-1 bg-gray-900 rounded">
+                <span style={{ display: 'block', fontSize: '0.875rem', fontStyle: 'italic', padding: '0.25rem 0.5rem', borderRadius: '0.25rem', color: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.1)' }}>
                     {t.marginError} {getRandomError()}
                 </span>
               </p>
             </div>
-            
-            {/* Detailed Forecast */}
-            <div className="bg-gray-700 p-5 rounded-lg shadow-inner border border-gray-600">
-                <p className="text-sm text-gray-400">
-                    <span className="font-semibold text-blue-300 block mb-1">{t.detailedForecast}</span>
+            <div style={{ padding: '1.25rem', borderRadius: '0.5rem', border: '1px solid var(--card-border)', backgroundColor: 'var(--bg-color)' }}>
+                <p style={{ fontSize: '0.875rem', color: 'var(--subtab-text)' }}>
+                    <span style={{ fontWeight: '600', display: 'block', marginBottom: '0.25rem', color: 'var(--text-color)' }}>{t.detailedForecast}</span>
                     {predictedDay}
                 </p>
             </div>
-
-
-            <div className="flex justify-between text-sm text-gray-400 pt-2">
-              <div className="flex items-center space-x-1">
-                <TrendingUp className="h-4 w-4 text-green-500" />
-                <span>{t.confidence} <span className="font-semibold text-green-400">{predictionDetails.confidence}</span></span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem', paddingTop: '0.5rem', color: 'var(--text-color)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <TrendingUp style={{ height: '1rem', width: '1rem', color: '#22c55e' }} />
+                <span>{t.confidence} <span style={{ fontWeight: '600', color: '#22c55e' }}>{predictionDetails.confidence}</span></span>
               </div>
-              <div className="flex items-center space-x-1">
-                <Sun className="h-4 w-4 text-yellow-500" />
-                <Moon className="h-4 w-4 text-indigo-500" />
-                <span>{t.vibeForecast} <span className="font-semibold text-white">{predictionDetails.vibe}</span></span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <Sun style={{ height: '1rem', width: '1rem', color: '#f59e0b' }} />
+                <Moon style={{ height: '1rem', width: '1rem', color: '#818cf8' }} />
+                <span>{t.vibeForecast} <span style={{ fontWeight: '600', color: 'var(--text-color)' }}>{predictionDetails.vibe}</span></span>
               </div>
             </div>
           </div>
         )}
-
       </div>
     </div>
   );

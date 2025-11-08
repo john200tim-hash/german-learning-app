@@ -1,0 +1,77 @@
+[33m1078cdd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat: Enhance translator intelligence and accuracy
+[33m97f2cc5[m Initial commit: Setup German learning app
+[33m6240340[m feat: Update Formspree contact form endpoint
+[33m840f872[m feat: Complete homepage navigation, fix Da-Compounds syntax, and enhance Prefixes tab
+[33md11da40[m feat: Complete homepage navigation, fix Da-Compounds syntax, and enhance Prefixes tab
+[33med4309a[m feat: Complete pronoun data and expand grammar quizzes
+[33m3881052[m build: Finalize layout, themeing, and component structure
+[33md059ef9[m build: Finalize layout, themeing, and component structure
+[33m6789690[m build: Finalize layout, themeing, and component structure
+[33m49ad05f[m build: Finalize layout, themeing, and component structure
+[33m6ab9c2c[m build: Finalize layout, themeing, and component structure
+[33m72f79e4[m build: Finalize layout, themeing, and component structure
+[33m559a0da[m build: Finalize layout, themeing, and component structure
+[33m1ec5d53[m build: Finalize layout, themeing, and component structure
+[33m918c274[m build: Finalize layout, themeing, and component structure
+[33m0e0e164[m build: Finalize layout, themeing, and component structure
+[33mf6acb2f[m build: Finalize layout, themeing, and component structure
+[33m3c839a3[m build: Finalize layout, themeing, and component structure
+[33m4c06f06[m feat: Complete pronoun data and expand grammar quizzes
+[33m4c23266[m feat: Complete pronoun data and expand grammar quizzes
+[33m649a24f[m feat: Complete pronoun data and expand grammar quizzes
+[33me10c8a8[m feat: Complete pronoun data and expand grammar quizzes
+[33maacf42a[m feat: Complete pronoun data and expand grammar quizzes
+[33m3bd7ced[m feat: Complete pronoun data and expand grammar quizzes
+[33m9418b7d[m feat: Complete pronoun data and expand grammar quizzes
+[33ma55f372[m feat: Complete pronoun data and expand grammar quizzes
+[33m6fce8da[m feat: Complete pronoun data and expand grammar quizzes
+[33mdff5d0d[m feat: Complete pronoun data and expand grammar quizzes
+[33m406c686[m feat: Modify support us button
+[33m6f1dbbc[m feat: Restore appeal, fix layouts, style support tab, and cleanup
+[33m9f3fd67[m feat: Clean up popup, style support tab, and push
+[33m4ea7b3e[m feat: Clean up popup, style support tab, and push
+[33mbeacfae[m feat: Add support phone number to settings modal
+[33mc9898d7[m feat: Modify support us button
+[33m5c8193d[m feat: Modify support us button
+[33m6914fbd[m feat: Modify support us button
+[33mbb92bf0[m fix: Correct syntax error in Layout.module.css
+[33mc904eca[m feat: Modify support us button
+[33m47ea04e[m feat: Modify support us button
+[33m107354e[m feat: Modify support us button
+[33m2ef2ad1[m feat: Add support number and tooltip to footer
+[33m1e09c8b[m fix: Remove obsolete email API routes
+[33m9c886b9[m fix: Forcefully remove obsolete email API route
+[33m3456e9b[m fix: Remove obsolete email API route
+[33m14aed43[m feat: Finalize all UI features, themes, and contact form
+[33m2db984a[m feat: Switch to SendGrid for contact form emails
+[33m1ad15b3[m fix: Correct fetch request for Formspree submission
+[33m609e69c[m fix: Correct fetch request for Formspree submission
+[33m6cb2577[m fix: Correct fetch request for Formspree submission
+[33m0568dcf[m feat: Update Formspree endpoint for contact form
+[33mecc2cc6[m feat: Switch to SendGrid for contact form emails
+[33mb34276b[m feat: Add Sakura Pink color mode (D) and fix theme logic
+[33md4ac061[m feat: Add Sakura Pink color mode (D) and fix theme logic
+[33m19282aa[m feat: Add Sakura Pink color mode (D) and fix theme logic
+[33m989b3de[m fix: Correct syntax in globals.css by combining html,body rules
+[33m51d9351[m fix: Remove unclosed comment from Layout.module.css
+[33m794c2ca[m fix: Remove unclosed comment from Layout.module.css
+[33m7716606[m fix: Remove empty rule to fix unclosed comment error
+[33m60e22af[m fix: Move global text size styles to globals.css and style contact button
+[33m66ebb48[m feat: Add XL and XXL text size styles
+[33me3400da[m feat: Add contact form to settings modal
+[33m45539bf[m feat: Add contact form to settings modal
+[33m0e02ad2[m fix: Correctly load and save all theme settings
+[33m54c8c65[m fix: Correctly load and save all theme settings
+[33m5dcfb01[m fix: Correctly load and save all theme settings
+[33m6ab73ec[m fix: Restore full content of SettingsModal component
+[33m3b12e0b[m fix: Correct syntax error in Layout.module.css
+[33me6e59ad[m fix: Correct syntax error in Layout.module.css
+[33m1fbd6fd[m fix: Correct syntax error in Layout.module.css
+[33m833a34b[m feat: Add viewport meta tag for mobile scaling
+[33mf8d6815[m feat: Add viewport meta tag for mobile scaling
+[33m1a8ce69[m fix: Remove merge conflict markers from ThemeContext
+[33m6db8d7e[m feat: Add viewport meta tag for mobile scaling
+[33m4a6cb32[m Merge branch 'main' of https://github.com/john200tim-hash/german-learning-hub
+[33ma6fb112[m fix: Stop tracking node_modules
+[33me953e65[m Initial commit
+[33mc8fdd88[m Initial commit
